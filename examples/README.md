@@ -1,7 +1,16 @@
 # Example details
-complexTransactions
+complexTransactions - 
+*	Credit Card Payments
+*	PayPal Transactions
+*	Gift Card (via ValueLink) Transactions
+*	eCheck (via TeleCheck) Transactions
+*	3D Secure Transactions
 
+simpleTransactions 
+* Credit Card Payments 
 
+creditCardPayments
+* authorize Capture transactions
 
 ## Contributing
 
