@@ -1,0 +1,47 @@
+=== 2.0.0 2015-03-11
+
+IOS SDK support the following payment brands
+- Visa payments
+- MasterCard payments
+- American Express payments
+- Discover payments
+
+iOS SDK support the following transactions
+- Purchase
+- Pre-Authorization (includes $0 Auth)
+- Pre-Authorization Completion
+- Refund
+- Void
+- Tagged Pre-Authorization Completion
+- Tagged Void
+- Tagged Refund
+
+iOS SDK support association-sponsored Address Verification Services for the following payment brands
+- Visa AVS
+- MasterCard AVS
+- American Express AAV
+- Discover AVS
+
+iOS SDK support association-sponsored Card Verification services
+- Visa CVV2
+- MasterCard CVC2
+- American Express CID
+- Discover CID
+
+iOS SDK support the following features
+- Split shipments
+- Level2 properties
+- Level3 properties
+- Recurring payments (recurring indicator)
+- Soft Descriptors
+
+=== 1.1.0 2014-12-01
+
+* New APIs
+
+=== 1.0.0 2014-09-01
+
+* Initial release
+* Base version with iOS SDK/Apple Pay/APIs 
+
+
