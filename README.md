@@ -2,15 +2,9 @@
 [![CocoaPods](https://img.shields.io/cocoapods/l/Stripe.svg?style=flat)](https://github.com/nohup-atulparmar/payeezy_ios/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/p/Stripe.svg?style=flat)](https://github.com/nohup-atulparmar/payeezy_ios)
 
-The Payeezy iOS SDK support secure In-App payments.
+The Payeezy iOS SDK support secure In-App payments via Apple's Apple Pay technology.
 * SDK provide support for all major credit cards payment brands, simple transaction like (Purchase,Pre-Authorization (includes $0 Auth),Pre-Authorization Completion,Refund,Void,Tagged Pre-Authorization Completion,Tagged Void, Tagged Refund, Gift Card and tele-check)  transactions
 * SDK also provide support association-sponsored Address Verification Services & association-sponsored Card Verification services
-
-# TokenBased Transactions (NEW) - 
-*	Generate Token with ta_token - auth false - POST API
-*	Generate Token with ta_token - auth true - POST API
-*	Generate Token without  ta_token & auth -  - POST API with 0$ Auth
-*	Generate Token - Backward compatible -  POST API call
 
 # Minimum System requirements
 The iOS mobile SDK requires iOS SDK 6 and XCode 5.1 and above
