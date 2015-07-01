@@ -1,4 +1,11 @@
 # Example details
+
+# TokenBased Transactions (NEW) - 
+*	Generate Token with ta_token - auth false - GET API
+*	Generate Token with ta_token - auth true - GET API
+*	Generate Token without  ta_token & auth -  - GET API with 0$ Auth
+*	Generate Token - Backward compatible -  GET API call
+
 complexTransactions - 
 *	Credit Card Payments
 *	PayPal Transactions
@@ -7,7 +14,7 @@ complexTransactions -
 *	3D Secure Transactions
 
 simpleTransactions 
-* Credit Card Payments 
+*  Credit Card Payments 
 
 creditCardPayments
 * authorize Capture transactions

@@ -1,0 +1,12 @@
+
+/* Class = "IBUILabel"; text = "Enter Amount (Ex:23.00)"; ObjectID = "Kyk-JL-SLI"; */
+"Kyk-JL-SLI.text" = "Enter Amount (Ex:23.00)";
+
+/* Class = "IBUILabel"; text = "Payeezy Client Test App"; ObjectID = "LEe-yP-9NL"; */
+"LEe-yP-9NL.text" = "Payeezy Client Test App";
+
+/* Class = "IBUILabel"; text = "First Data Corporation"; ObjectID = "XqU-lI-7aV"; */
+"XqU-lI-7aV.text" = "First Data Corporation";
+
+/* Class = "IBUIButton"; normalTitle = "Make Payment"; ObjectID = "oXI-ft-XL1"; */
+"oXI-ft-XL1.normalTitle" = "Make Payment";

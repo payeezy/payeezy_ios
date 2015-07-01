@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>69571641-053E-45A4-A322-64E8DB1F560D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PayeezyClientSample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A751847EBBE7972BC0CC8C8B33876CA03C17D3D0</key>
+		<string>https://github.com/nohup-atulparmar/payeezy_android_pay.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>examples/sdk/ios/PayeezyClientSample.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A751847EBBE7972BC0CC8C8B33876CA03C17D3D0</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/nohup-atulparmar/payeezy_android_pay.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A751847EBBE7972BC0CC8C8B33876CA03C17D3D0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A751847EBBE7972BC0CC8C8B33876CA03C17D3D0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>payeezy_android_pay</string>
+		</dict>
+	</array>
+</dict>
+</plist>
