@@ -8,7 +8,7 @@ Objective-C classes and implemenation
 
 Sample app Print screen : 
 
-<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/app%20file%20structure.png" alt="dir structure" style="width: 200px;"/>
+<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/app%20file%20structure%20.png" alt="dir structure" style="width: 200px;"/>
 
 
 simpleTransactions 
