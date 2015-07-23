@@ -6,7 +6,9 @@ Objective-C classes and implemenation
 *  PayeezySDK.h | library header 
 *  PayeezySDK.m | library Impl 
 
-Sample app Print screen : ![alt tag](https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/app%20file%20structure%20.png =100x20) 
+Sample app Print screen : 
+
+![](https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/app%20file%20structure%20.png =100x20)
 
 simpleTransactions 
 Credit Card Payments - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter amount in dollars and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
