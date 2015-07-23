@@ -1,5 +1,7 @@
 # Payeezy IOS Examples 
 
+Sample code are already integrated with Payeezy SDK(with source). 
+
 Objective-C classes and implemenation 
 *  ViewController.h | app header
 *  ViewController.m | app Impl
