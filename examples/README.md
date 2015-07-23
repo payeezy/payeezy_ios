@@ -46,6 +46,10 @@ FDTokenBasedTransactions - Many ways you can generate token ...based on your req
 *	Generate Token with ta_token - auth true - GET/POST API
 *	Generate Token without  ta_token & auth -  - GET/POST API with 0$ Auth
 
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p1.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p2.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p3.png" alt="sample app"/></div>
+<br>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p4.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p5.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p6.png" alt="sample app"/></div>
+
 ## Contributing
 
 1. Fork it 
