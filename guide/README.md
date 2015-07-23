@@ -2,6 +2,16 @@
 
 Step by step implementation - Payeezy IOS guide 
 
+# Minimum technical requirements
+The iOS mobile SDK requires iOS SDK 6 and XCode 5.1 and above
+
+# Steps to integrate code with Payeezy SDK
+*Step 1: Download the Payeezy iOS SDK from GitHub
+*Step 2: Use integrted SDK files 
+*Step 3: Define merchant Token, Apikey and ApiSecret (.m file)
+*Step 4: Initialize PayeezySDK object with KApiKey, KApiSecret, KToken and KURL 
+*Step 5: Call transaction method and pass the required parameters
+
 ## Contributing
 
 1. Fork it 
