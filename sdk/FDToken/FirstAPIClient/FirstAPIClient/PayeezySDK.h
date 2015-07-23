@@ -8,11 +8,15 @@
  @discussion
  
  Payeezy supports the following method of payments
- * Credit Card Payments
- * PayPal Transactions
- * Gift Card (via ValueLink) Transactions
- * eCheck (via TeleCheck) Transactions
- For API processing details, click here https://developer-qa.payeezy.com/integration
+ * Purchase
+ * Pre-Authorization (includes $0 Auth)
+ * Pre-Authorization Completion
+ * Refund
+ * Void
+ * Tagged Pre-Authorization Completion
+ * Tagged Void
+ * Tagged Refund
+ * For API processing details, click here https://developer.payeezy.com/integration
  */
 
 #import <Foundation/Foundation.h>
@@ -26,7 +30,7 @@ FOUNDATION_EXPORT double PayeezyClientVersionNumber;
 FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
 
 
-@protocol PayeezyClient <NSObject>
+@protocol PayeezySDK <NSObject>
 
 /*!
  @discussion
@@ -71,6 +75,16 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
                                merchantRef:(NSString *)merchantRef
                                 completion:(void(^)(NSDictionary *response, NSError *error))completion;
 
+-(void)submitGetFDTokenForCreditCard:(NSString*)cardType
+                      cardHolderName:(NSString*)cardHolderName
+                          cardNumber:(NSString*)cardNumber
+             cardExpirymMonthAndYear:(NSString*)cardExpMMYY
+                             cardCVV:(NSString*)cardCVV
+                                type:(NSString*)type
+                                auth:(NSString*)auth
+                            ta_token:(NSString*)ta_token
+                          completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
 /*!
  @discussion
  PayeezyClient method to process credit card payments regardless to PKPayment supported devices
@@ -90,41 +104,19 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
  
  */
 
--(void)submitAuthorizeTransactionWithCreditCardDetails:(NSString*)cardType
-                                        cardHolderName:(NSString*)cardHolderName
-                                            cardNumber:(NSString*)cardNumber
-                               cardExpirymMonthAndYear:(NSString*)cardExpMMYY
-                                               cardCVV:(NSString*)cardCVV
-                                          currencyCode:(NSString*)currenyCode
-                                           totalAmount:(NSString*)totalAmount
-                              merchantRefForProcessing:(NSString*)merchantRef
-                                            completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+-(void)submitAuthorizePurchaseTransactionWithCreditCardDetails:(NSString*)cardCVV
+                                                   cardExpMMYY:(NSString*)cardExpMMYY
+                                                    cardNumber:(NSString*)cardNumber
+                                                cardHolderName:(NSString*)cardHolderName
+                                                      cardType:(NSString*)cardType
+                                                  currencyCode:(NSString*)currencyCode
+                                                   totalAmount:(NSString*)totalAmount
+                                                   merchantRef:(NSString*)merchantRef
+                                               transactionType:(NSString*)transactionType
+                                                    token_type:(NSString*)token_type
+                                                        method:(NSString*)method
+                                                    completion:(void (^)(NSDictionary *dict, NSError* error))completion;
 
-/*!
- @discussion
- Use this method to submit payments credit and debit cards. Supported transaction type is 'Purchase'
- It supports Visa payments, MasterCard payments,  American Express payments and Discover payments
- @see For more information {@link https://developer.payeezy.com/payeezy-api-reference/apis/credit-card-payments}
- @param cardType
- @param cardHolderName
- @param cardNumber
- @param cardExpMMYY
- @param cardCVV
- @param currencyCode
- @param totalAmount
- @param merchantRef
- @result Returns Returns payload response string
- */
-
--(void)submitPurchaseTransactionWithCreditCardDetails:(NSString*)cardType
-                                       cardHolderName:(NSString*)cardHolderName
-                                           cardNumber:(NSString*)cardNumber
-                              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
-                                              cardCVV:(NSString*)cardCVV
-                                         currencyCode:(NSString*)currencyCode
-                                          totalAmount:(NSString*)totalAmount
-                             merchantRefForProcessing:(NSString*)merchantRef
-                                           completion:(void (^)(NSDictionary *dict, NSError* error))completion;
 
 
 /*!
@@ -806,12 +798,14 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
 @end
 
 
-@interface PayeezyClient : NSObject<NSURLConnectionDelegate,NSURLSessionDelegate,PayeezyClient>
+@interface PayeezySDK : NSObject<NSURLConnectionDelegate,NSURLSessionDelegate,PayeezySDK>
 
 
 @property (nonatomic,strong) NSString* apiKey;
 @property (nonatomic,strong) NSString* apiSecret;
 @property (nonatomic,strong) NSString* merchantToken;
+@property (nonatomic,strong) NSString* merchantIdentifier;
+@property (nonatomic,strong) NSString* trToken;
 @property (nonatomic,strong) NSString* environment;
 @property (nonatomic,strong) NSString* url;
 

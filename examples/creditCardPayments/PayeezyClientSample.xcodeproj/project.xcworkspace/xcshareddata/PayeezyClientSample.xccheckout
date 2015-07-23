@@ -10,29 +10,29 @@
 	<string>PayeezyClientSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8726469EBA964E86FA5B35398798B1702E8694A0</key>
-		<string>https://github.com/nohup-atulparmar/payeezy_ios.git</string>
+		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
+		<string>https://github.com/payeezy/payeezy_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>example/creditCardPayments/PayeezyClientSample.xcodeproj</string>
+	<string>examples/creditCardPayments/PayeezyClientSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8726469EBA964E86FA5B35398798B1702E8694A0</key>
+		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/nohup-atulparmar/payeezy_ios.git</string>
+	<string>https://github.com/payeezy/payeezy_ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8726469EBA964E86FA5B35398798B1702E8694A0</string>
+	<string>A3A0CC7819F609F0E51C33DC9564623458878F46</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8726469EBA964E86FA5B35398798B1702E8694A0</string>
+			<string>A3A0CC7819F609F0E51C33DC9564623458878F46</string>
 			<key>IDESourceControlWCCName</key>
 			<string>payeezy_ios</string>
 		</dict>

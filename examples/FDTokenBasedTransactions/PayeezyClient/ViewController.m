@@ -22,17 +22,6 @@
 #define PURL        @"https://api-cert.payeezy.com/v1/transactions"
  
 
-
-/* 
-// Non Prod enviroment
-#define KApiKey     @"Jc9qkh5wkkPxv1K3o807N9wz0qfcHGQE"
-#define KApiSecret  @"675d92bff9602acb6a52cbf7529f34c923689b60a65734f33c1917b196b13036"
-#define KToken      @"fdoa-a480ce8951daa73262734cf102641994c1e55e7cdf4c02b6"
-// use following url to get token and proceed for transactions
-#define KURL        @"https://api-cat.payeezy.com/v1/transactions/tokens"
-// use following url for transactions
-#define PURL        @"https://api-cat.payeezy.com/v1/transactions"
-*/
  
 @interface ViewController ()
 
@@ -52,6 +41,7 @@
 @synthesize  amexCard ;
 @synthesize  discoverCard ;
 @synthesize  fdTokenValue;
+
 /*!
  *
  * \param
@@ -141,9 +131,7 @@
 //If the user chooses from the pickerview, it calls this function;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    //Let's print in the console what the user had chosen;
-    // NSLog(@"picked color is : %@", [self.items objectAtIndex:row]);
-    
+       
     
     switch (row) {
             

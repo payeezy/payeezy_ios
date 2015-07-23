@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>69571641-053E-45A4-A322-64E8DB1F560D</string>
+	<string>2F62FD5F-54BE-4D4D-8125-4152D946C155</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>FirstAPIClient</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
-		<string>https://github.com/payeezy/payeezy_ios.git</string>
+		<key>821A94B17FA69BD3A2754BD6743CAAED9C32D4E4</key>
+		<string>ssh://Raghu%2520Vamsi@l-cnu416dfm2-010177129211.1dc.com/git/FirstAPIClient.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>examples/FDTokenBasedTransactions/PayeezyClientSample.xcodeproj/project.xcworkspace</string>
+	<string>FirstAPIClient.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
-		<string>../../../..</string>
+		<key>821A94B17FA69BD3A2754BD6743CAAED9C32D4E4</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/payeezy/payeezy_ios.git</string>
+	<string>ssh://Raghu%2520Vamsi@l-cnu416dfm2-010177129211.1dc.com/git/FirstAPIClient.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>A3A0CC7819F609F0E51C33DC9564623458878F46</string>
+	<string>821A94B17FA69BD3A2754BD6743CAAED9C32D4E4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A3A0CC7819F609F0E51C33DC9564623458878F46</string>
+			<string>821A94B17FA69BD3A2754BD6743CAAED9C32D4E4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>payeezy_ios</string>
+			<string>FirstAPIClient</string>
 		</dict>
 	</array>
 </dict>
