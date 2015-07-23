@@ -18,6 +18,7 @@ Credit Card Payments - Sample app demonstate only credit card related tansaction
 * authorize-Capture
 * purchase-Refund
 * purchase-Void
+<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.tiff" alt="sample app" style="width: 100px;height:120px"/>
 
 creditCardPayments
 Authorize Capture transactions - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
