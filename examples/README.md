@@ -1,23 +1,41 @@
-# Example details
+# Payeezy IOS Examples 
 
-# TokenBased Transactions (NEW) - 
-*	Generate Token with ta_token - auth false - GET API
-*	Generate Token with ta_token - auth true - GET API
-*	Generate Token without  ta_token & auth -  - GET API with 0$ Auth
-*	Generate Token - Backward compatible -  GET API call
+Objective-C classes and implemenation 
+*  ViewController.h | app header
+*  ViewController.m | app Impl
+*  PayeezySDK.h | library header 
+*  PayeezySDK.m | library Impl 
 
-complexTransactions - 
+Sample app Print screen : 
+
+simpleTransactions 
+Credit Card Payments - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter amount in dollars and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
+* authorize-Amt0
+* authorize-Void
+* authorize-Capture
+* purchase-Refund
+* purchase-Void
+
+creditCardPayments
+Authorize Capture transactions - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
+* authorize-Amt0
+* authorize-Void
+* authorize-Capture
+* purchase-Refund
+* purchase-Void
+
+complexTransactions - Sample app demonstate only credit card related tansactions Scondary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
+
 *	Credit Card Payments
 *	PayPal Transactions
 *	Gift Card (via ValueLink) Transactions
 *	eCheck (via TeleCheck) Transactions
 *	3D Secure Transactions
 
-simpleTransactions 
-*  Credit Card Payments 
-
-creditCardPayments
-* authorize Capture transactions
+FDTokenBasedTransactions - Many ways you can generate token ...based on your requirement. 
+*	Generate Token with ta_token - auth false - GET/POST API
+*	Generate Token with ta_token - auth true - GET/POST API
+*	Generate Token without  ta_token & auth -  - GET/POST API with 0$ Auth
 
 ## Contributing
 
