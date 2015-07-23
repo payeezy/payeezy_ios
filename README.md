@@ -1,5 +1,5 @@
 # Payeezy SDK for iOS
-[![CocoaPods](https://img.shields.io/cocoapods/l/Stripe.svg?style=flat)](https://github.com/nohup-atulparmar/payeezy_ios/blob/master/LICENSE)
+[![CocoaPods](https://img.shields.io/cocoapods/l/Stripe.svg?style=flat)](https://github.com/payeezy/payeezy_ios/raw/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/p/Stripe.svg?style=flat)](https://github.com/nohup-atulparmar/payeezy_ios)
 
 The Payeezy iOS SDK support secure In-App payments via Apple's Apple Pay technology.
