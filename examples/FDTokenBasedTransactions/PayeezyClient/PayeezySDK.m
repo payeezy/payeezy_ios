@@ -21,9 +21,9 @@
 #define SERVER_ERROR_MSG @"Internal Server Error. Please try later"
 
 #define URL_TRANSACTIONS_CERT @"https://api-cert.payeezy.com/v1/transactions/"
-#define URL_TRANSACTIONS_PROD @"https://api-cert.payeezy.com/v1/transactions/"
-#define URL_TRANSACTIONS_CAT @"https://api-cert.payeezy.com/v1/transactions/"
-#define URL_TRANSACTIONS_QA @"https://api-cert.payeezy.com/v1/transactions/"
+#define URL_TRANSACTIONS_PROD @"https://api.payeezy.com/v1/transactions/"
+#define URL_TRANSACTIONS_CAT @"https://api-cat.payeezy.com/v1/transactions/"
+#define URL_TRANSACTIONS_QA @"https://api-int.payeezy.com/v1/transactions/"
 
 @implementation PayeezySDK {
 }
@@ -1418,6 +1418,23 @@
     }
 }
 
+/**
+ Define request structure for postATransactionWithPayload
+ @param payload
+ 
+ */
+
+-(void) getATransactionWithPayload:(NSDictionary*)payload
+                         completion:(void(^)(NSDictionary *dict, NSError *error))completion
+{
+    BOOL networkStatus = [self isInternetReachable];
+    if (!networkStatus) {
+        completion(nil,[NSError errorWithDomain:@"No Internet Connection Found. Please connect to wifi or cellular data" code:100 userInfo:nil]);
+    }else{
+        [self processPaymentOnInternetViaGET:payload completion:completion];
+    }
+}
+
 - (void)processPaymentOnInternet:(NSDictionary *)payload completion:(void (^)(NSDictionary *, NSError *))completion
 {
     NSError* errDataConversion;
@@ -1486,6 +1503,103 @@
                     }
                 }else{
                    
+                    completion(nil,connectionError);
+                }
+            }
+            
+        }];
+    }else{
+        
+        completion(nil,errDataConversion);
+    }
+    
+    
+}
+
+
+- (void)processPaymentOnInternetViaGET:(NSDictionary *)payload completion:(void (^)(NSDictionary *, NSError *))completion
+{
+    NSError* errDataConversion;
+    
+    NSString*timeStamp = [self getEpochTimeStamp];
+    
+    NSString *nonce = [self secureRandomNumber];
+    
+    NSString *hmacSignature = [self generateHMACforpayload:payload timeStamp:timeStamp nonce:nonce];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+    
+    // Specify that it will be a POST request
+    request.HTTPMethod = @"GET";
+    
+    // This is how we set header fields
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:hmacSignature forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25" forHTTPHeaderField: @"User-Agent"];
+    
+    [request setValue:timeStamp forHTTPHeaderField:@"timestamp"];
+    [request setValue:nonce forHTTPHeaderField:@"nonce"];
+    [request setValue:self.apiKey forHTTPHeaderField:@"apikey"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"token"];
+    
+    [request setValue:self.merchantToken forHTTPHeaderField:@"js_security_key"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"ta_token"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"auth"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"token"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"callback"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"type"];
+    
+    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.type"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.cardholder_name"];
+    
+    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.card_number"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.exp_date"];
+    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.cvv"];
+    
+    
+    
+    
+    // Convert your data and set your request's HTTPBody property
+    SBJson4Writer * parseString = [[SBJson4Writer alloc] init];
+    
+    NSString* payloadString = [parseString stringWithObject:payload];
+    request.HTTPBody = [payloadString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"URL: %@",self.url);
+    NSLog(@"Request: %@",payloadString);
+    
+    
+    if (!errDataConversion) {
+        // Create url connection and fire request
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *urlResponse, NSData *data, NSError *connectionError) {
+            
+            NSError* errJSONConverison;
+            if (completion) {
+                
+                if (!connectionError) {
+                    
+                    if ([urlResponse respondsToSelector:@selector(statusCode)]) {
+                        
+                        if ([(NSHTTPURLResponse *) urlResponse statusCode] < 300) {
+                            
+                            NSDictionary* responseObject = [NSJSONSerialization
+                                                            JSONObjectWithData:data
+                                                            options:NSJSONReadingAllowFragments
+                                                            error:&errJSONConverison];
+                            completion(responseObject, nil);
+                        }else{
+                            
+                            
+                            NSDictionary* errorObject = [NSJSONSerialization
+                                                         JSONObjectWithData:data
+                                                         options:NSJSONReadingAllowFragments
+                                                         error:&errJSONConverison];
+                            
+                            completion(nil, [NSError errorWithDomain:@"Payeezy Error Info" code:[(NSHTTPURLResponse *) urlResponse statusCode] userInfo:errorObject]);
+                        }
+                    }
+                }else{
+                    
                     completion(nil,connectionError);
                 }
             }
@@ -1598,6 +1712,65 @@
  */
 
 -(void)submitGetFDTokenForCreditCard:(NSString*)cardType
+                      cardHolderName:(NSString*)cardHolderName
+                          cardNumber:(NSString*)cardNumber
+             cardExpirymMonthAndYear:(NSString*)cardExpMMYY
+                             cardCVV:(NSString*)cardCVV
+                                type:(NSString*)type
+                                auth:(NSString*)auth
+                            ta_token:(NSString*)ta_token
+                          completion:(void (^)(NSDictionary *dict, NSError* error))completion
+{
+    
+    [self postATransactionWithPayload:[self constructGenerateFDTokenForCreditCard:cardType cardHolderName:cardHolderName cardNumber:cardNumber  cardExpMMYY:cardExpMMYY  cardCVV:cardCVV type:type auth:auth ta_token:ta_token ]  completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+        if([dict valueForKey:STATUS_KEY_NAME]){
+            completion(dict,nil);
+        }else{
+            completion(dict,[NSError errorWithDomain:SERVER_ERROR_MSG code:101 userInfo:nil]);
+        }
+    }];
+}
+
+
+/**
+ * PayeezyClient method to process credit card payments regardless to PKPayment supported devices
+ * Use this method to submit payments credit and debit cards. Supported transaction type is 'authorize'.
+ * It supports Visa payments, MasterCard payments,  American Express payments and Discover payments
+ * For more details refer https://developer.payeezy.com/payeezy-api-reference/apis/credit-card-payments
+ @param cardType creditcard payload item
+ @param cardHolderName
+ @param cardNumber
+ @param cardExpMMYY
+ @param cardCVV
+ @param currencyCode
+ @param totalAmount
+ @param merchantRef
+ @return Returns
+ @see
+ 
+ Sample Payload:
+ {
+	"type": "FDToken",
+	"credit_card": {
+ "type": "VISA",
+ "cardholder_name": "JohnSmith",
+ "card_number": "4788250000028291",
+ "exp_date": "1030",
+ "cvv": "123"
+ },
+	"auth": "false",
+	"ta_token": "NOIW"
+ }
+ 
+ */
+
+-(void)submitGETTokenizeCreditCards:(NSString*)cardType
                       cardHolderName:(NSString*)cardHolderName
                           cardNumber:(NSString*)cardNumber
              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
