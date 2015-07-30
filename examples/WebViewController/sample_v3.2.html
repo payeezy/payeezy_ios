@@ -1,0 +1,218 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    
+                    <style>
+                        .line-separator {
+                            height: .2px;
+                            background: #717171;
+                            border-bottom: 1px solid #d3d3d3;
+                        }
+                    </style>
+                    
+                    <!-- Payeezy JS and jquery reference Java-script files   -->
+                    <script src="jquery-1.11.3.min.js"></script>
+                    <script src="payeezy_v3.2.js"></script>
+                    
+                    
+                    <script type="text/javascript">
+                        
+                        <!-- handling response from Payeezy server -->
+                        var responseHandler = function(status, response) {
+                            var $form = $('#payment-info-form');
+                            $('#someHiddenDiv').hide();
+                            if (status != 201) {
+                                if (response.error && status != 400) {
+                                    var error = response["error"];
+                                    var errormsg = error["messages"];
+                                    var errorcode = JSON.stringify(errormsg[0].code, null, 4);
+                                    var errorMessages = JSON.stringify(errormsg[0].description, null, 4);
+                                    $('#payment-errors').html( 'Error Code:' + errorcode + ', Error Messages:'
+                                                              + errorMessages);
+                                }
+                                if (status == 400 || status == 500) {
+                                    $('#payment-errors').html('');
+                                    var errormsg = response.Error.messages;
+                                    var errorMessages = "";
+                                    for(var i in errormsg){
+                                        var ecode = errormsg[i].code;
+                                        var eMessage = errormsg[i].description;
+                                        errorMessages = errorMessages + 'Error Code:' + ecode + ', Error Messages:'
+                                        + eMessage;
+                                    }
+                                    
+                                    $('#payment-errors').html( errorMessages);
+                                }
+                                
+                                $form.find('button').prop('disabled', false);
+                            } else {
+                                $('#payment-errors').html('');
+                                var result = response.token.value;
+                                $('#response_msg').html('Payeezy response - Token value:' + result);
+                                $('#response_note')
+                                .html(
+                                      " Note: Use this token for authorize and/or purchase transactions. For more details, visit https://developer.payeezy.com/payeezy-api-reference/apis");
+                                      $form.find('button').prop('disabled', false);
+                            }
+                            
+                        };
+                    
+                    <!-- Building JSON resquest and submitting request to Payeezy sever -->
+                    function processPayment()  {
+                        
+                        $('#response_msg').html('');
+                        $('#response_note').html('');
+                        $('#payment-errors').html('');
+                        
+                        var $form = $(this);
+                        $form.find('button').prop('disabled', true);
+                        var apiKey = document.getElementById("apikey").value;
+                        var js_security_key = document.getElementById("js_security_key").value;
+                        
+                        <!-- Setting Key parameters for Payeezy gettoken method -->
+                        Payeezy.setApiKey(apiKey);
+                        Payeezy.setJs_Security_Key(js_security_key);
+                        Payeezy.setTa_token(ta_token);
+                        Payeezy.createToken(responseHandler);
+                        $('#someHiddenDiv').show();
+                        return false;
+                    }
+                    </script>
+                    
+                    
+    </head>
+    
+    <body>
+        
+        <br>
+        <div><img
+            width="120" class="logo"
+            src="https://developer.payeezy.com/sites/default/files/Payeezy-DevelopersLogo_Horz.png"
+            alt="Payeezy" />
+        </div>
+        
+        
+        <div class="line-separator"></div>
+        <div style=”-webkit-text-size-adjust:auto”>
+            Integration method - Payeezy.js {v3.2}: Generate Token - Entitlements Removed - v3.2 - WITH
+            js_security_key, auth and ta_token</h3>
+        </div>
+        
+        <form method="post" name="payment-info-form" id="payment-info-form">
+            <h4 style="color: red">
+                <span id="payment-errors"></span>
+            </h4>
+            <h4 style="color: green">
+                <span id="response_msg"></span>
+            </h4>
+            
+            <div id="someHiddenDiv" style="display: none; color: red">Requesting
+                Payeezy token...</div>
+            <table>
+                <tr>
+                    <td align="right">API Key :</td>
+                    <td><input type="text" name="apikey" id="apikey"
+                        value="y6pWAJNyJyjGv66IsVuWnklkKUPFbb0a" /></td>
+                </tr>
+                <tr>
+                    <td align="right">API Secret :</td>
+                    <td><input type="text" name="apisecret" id="apisecret"
+                        value="86fbae7030253af3cd15faef2a1f4b67353e41fb6799f576b5093ae52901e6f7" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">JS Security Key :</td>
+                    <td><input type="text" name="js_security_key"
+                        id="js_security_key"
+                        value="js-6125e57ce5c46e10087a545b9e9d7354c23e1a1670d9e9c7" /></td>
+                </tr>
+                <tr>
+                    <td align="right">Merchant Token :</td>
+                    <td><input type="text" name="token" id="token"
+                        value="fdoa-a480ce8951daa73262734cf102641994c1e55e7cdf4c02b6" /></td>
+                </tr>
+                <tr>
+                    <td align="right">Auth :</td>
+                    <td><select name="auth" id="auth" payeezy-data="auth">
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td align="right">TA Token :</td>
+                    <td><input type="text" name="ta_token" id="ta_token"
+                        payeezy-data="ta_token" value="NOIW" /></td>
+                </tr>
+                <tr>
+                    <td align="right">Card Type :</td>
+                    <td><select payeezy-data="card_type">
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Master Card</option>
+                        <option value="American Express">American Express</option>
+                        <option value="discover">Discover</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td align="right">Cardholder Name :</td>
+                    <td><input type="text" payeezy-data="cardholder_name"
+                        value="xyz" /></td>
+                </tr>
+                <tr>
+                    <td align="right">Card Number :</td>
+                    <td><input type="text" payeezy-data="cc_number"
+                        value="4788250000028291" /></td>
+                </tr>
+                <tr>
+                    <td align="right">CVV Code :</td>
+                    <td><input type="text" payeezy-data="cvv_code" value="123" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Expiry Date :</td>
+                    <td><select payeezy-data="exp_month">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12" selected>12</option>
+                    </select> <select payeezy-data="exp_year">
+                        <option value="15">2015</option>
+                        <option value="16">2016</option>
+                        <option value="17">2017</option>
+                        <option value="18">2018</option>
+                        <option value="18">2019</option>
+                        <option value="18">2020</option>
+                        <option value="18">2021</option>
+                    </select></td>
+                </tr>
+            </table>
+            
+            <div id="generate-token">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td><a href="javascript: processPayment();">Generate token</a></td>
+                    </tr>
+                </table>
+            </div>
+            <h4 style="color: blue">
+                <span id="response_note"></span>
+            </h4>
+            
+        </form>
+    </body>
+    
+</html>
