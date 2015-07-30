@@ -21,7 +21,7 @@ Credit Card Payments - Sample app demonstate only credit card related tansaction
 * purchase-Refund
 * purchase-Void
 
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.tiff" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_OUT.tiff" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_OUT.png" alt="sample app"/></div>
 
 creditCardPayments
 Authorize Capture transactions - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
@@ -32,7 +32,7 @@ Authorize Capture transactions - Sample app demonstate only credit card related 
 * purchase-Void
 
 
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_IN.tiff" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_OP.tiff" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_OP.png" alt="sample app"/></div>
 
 
 complexTransactions - Sample app demonstate only credit card related tansactions Scondary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
