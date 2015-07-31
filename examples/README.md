@@ -52,6 +52,10 @@ FDTokenBasedTransactions - Many ways you can generate token ...based on your req
 <br>
 <div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p3.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p4.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p5.png" alt="sample app"/></div>
 
+Securing APIKey, token constant values in IOS app : http://stackoverflow.com/questions/9448632/best-practices-for-ios-applications-security?rq=1
+
+Securing APIKey, token constant values in Android app : http://stackoverflow.com/questions/14570989/best-practice-for-storing-private-api-keys-in-android
+
 ## Contributing
 
 1. Fork it 
