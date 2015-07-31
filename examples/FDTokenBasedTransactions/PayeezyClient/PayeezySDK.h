@@ -75,7 +75,7 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
                                merchantRef:(NSString *)merchantRef
                                 completion:(void(^)(NSDictionary *response, NSError *error))completion;
 
--(void)submitGetFDTokenForCreditCard:(NSString*)cardType
+-(void)submitPostFDTokenForCreditCard:(NSString*)cardType
                       cardHolderName:(NSString*)cardHolderName
                           cardNumber:(NSString*)cardNumber
              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
@@ -84,6 +84,18 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
                                 auth:(NSString*)auth
                             ta_token:(NSString*)ta_token
                           completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
+-(void)submitGetFDTokenForCreditCard:(NSString*)cardType
+                       cardHolderName:(NSString*)cardHolderName
+                           cardNumber:(NSString*)cardNumber
+              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
+                              cardCVV:(NSString*)cardCVV
+                                 type:(NSString*)type
+                                 auth:(NSString*)auth
+                             ta_token:(NSString*)ta_token
+                      js_security_key:(NSString *)js_security_key
+                             callback:(NSString *)callback
+                           completion:(void (^)(NSDictionary *dict, NSError* error))completion;
 
 /*!
  @discussion

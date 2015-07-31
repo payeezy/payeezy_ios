@@ -16,8 +16,12 @@
 #define KApiSecret  @"86fbae7030253af3cd15faef2a1f4b67353e41fb6799f576b5093ae52901e6f7"
 #define KToken      @"fdoa-a480ce8951daa73262734cf102641994c1e55e7cdf4c02b6"
  
- // use following url to get token and proceed for transactions
+ // use following url to get token (POST) and proceed for transactions
 #define KURL        @"https://api-cert.payeezy.com/v1/transactions/tokens"
+
+// use following url to get token (GET) and proceed for transactions
+#define SURL        @"https://api-cert.payeezy.com/v1/securitytokens?"
+
  // use following url for transactions
 #define PURL        @"https://api-cert.payeezy.com/v1/transactions"
  
@@ -203,13 +207,10 @@
  * \returns IBAction
  */
 // test case 4
-- (IBAction)getFDToken:(id)sender {
+- (IBAction)postTokenizeCreditCards:(id)sender {
     
          // Test credit card info
         NSDictionary* credit_card = self.icredit_card ;
-    
-        // Test credit card info
-        // mutliple test cases
     
         NSDictionary* tokenizer = @{
                                       @"type":@"FDToken",  // you can change to Amex/Discover/Master Card here
@@ -223,7 +224,7 @@
             [self.wait4Response startAnimating];
         }
     
-        [myClient submitGetFDTokenForCreditCard:credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] completion:^(NSDictionary *dict, NSError *error)
+        [myClient submitPostFDTokenForCreditCard:credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] completion:^(NSDictionary *dict, NSError *error)
        {
            if([self.wait4Response isAnimating]){
             [self.wait4Response stopAnimating];
@@ -242,14 +243,6 @@
         
         self.fdTokenValue =[result objectForKey:@"value"];
         
-        /*  if (error == nil){
-         authStatusMessage = [NSString stringWithFormat:@"Transaction details\r correlation_id:%@",
-         [dict objectForKey:@"correlation_id"]];
-         } else {
-         authStatusMessage = [NSString stringWithFormat:@"Error was encountered processing transaction: %@", error.debugDescription];
-         }
-         */
-        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"First Data Payment Authorization"
                                                         message:authStatusMessage delegate:self
                                               cancelButtonTitle:@"Dismiss"
@@ -257,6 +250,61 @@
         [alert show];
     }];
    
+}
+
+/*!
+ * sample transaction - getFDToken using credit card
+ * \param id
+ * \returns IBAction
+ */
+// test case 4
+- (IBAction)getTokenizeCreditCards:(id)sender {
+    
+    // Test credit card info
+    NSDictionary* credit_card = self.icredit_card ;
+    
+    NSDictionary* tokenizer = @{
+                                @"type":@"FDToken",  // you can change to Amex/Discover/Master Card here
+                                @"auth":@"false",
+                                @"ta_token":@"NOIW",
+                                @"js_security_key":@"js-6125e57ce5c46e10087a545b9e9d7354c23e1a1670d9e9c7",  // you can change it to object variable as you have apikey
+                                @"callback":@"Payeezy.callback"
+                                };
+   
+    
+    PayeezySDK* myClient = [[PayeezySDK alloc]initWithApiKey:KApiKey apiSecret:KApiSecret merchantToken:KToken url:SURL];
+    
+    if(![self.wait4Response isAnimating]){
+        [self.wait4Response startAnimating];
+    }
+    
+    [myClient submitGetFDTokenForCreditCard:credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] js_security_key:tokenizer[@"js_security_key"] callback:tokenizer[@"callback"] completion:^(NSDictionary *dict, NSError *error)
+     {
+         if([self.wait4Response isAnimating]){
+             [self.wait4Response stopAnimating];
+             
+         }
+         
+         
+         NSString *authStatusMessage = nil;
+         
+         NSDictionary *result = [dict objectForKey:@"results"];
+         
+         authStatusMessage = [NSString
+                              stringWithFormat:@"Transaction details\r status:%@ \r  correlation id:%@ \r Tokenized Value:%@ \r type:%@  ", [dict objectForKey:@"status"],[dict objectForKey:@"correlation_id"],
+                              [result objectForKey:@"value"],
+                              [dict objectForKey:@"type"]];
+         
+         self.fdTokenValue =[result objectForKey:@"value"];
+       
+         
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"First Data Payment Authorization"
+                                                         message:authStatusMessage delegate:self
+                                               cancelButtonTitle:@"Dismiss"
+                                               otherButtonTitles:nil];
+         [alert show];
+     }];
+    
 }
 
 /*!

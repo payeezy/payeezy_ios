@@ -863,7 +863,7 @@
  }
  */
 
-- (NSDictionary*)constructGenerateFDTokenForCreditCard:(NSString *)cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token
+- (NSDictionary*)constructPostFDTokenForCreditCard:(NSString *)cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token
 {
     NSArray *crediCardKeys = @[
                                @"type",
@@ -900,6 +900,55 @@
     return [NSDictionary dictionaryWithObjects:payloadValues forKeys:payloadKeys];
 }
 
+/**
+ Define request structure for CreditCard Payload With Card CVV
+ @param cardCVV  credit-card payload parameter
+ @param cardExpMMYY credit-card payload parameter
+ @param cardNumber credit-card payload parameter
+ @param cardHolderName credit-card payload parameter
+ @param cardType creditcard payload parameter
+ @param currencyCode
+ @param totalAmount
+ @param cardType
+ @param currencyCode
+ @param totalAmount
+ @param merchantRef
+ @param transactionType
+ @return Returns
+ @see
+ 
+ Sample Payload:
+ 
+ https://api-cert.payeezy.com/v1/securitytokens? auth=false&ta_token=NOIW&apikey=y6pWAJNyJyjGv66IsVuWnklkKUPFbb0a&
+ js_security_key=js-6125e57ce5c46e10087a545b9e9d7354c23e1a1670d9e9c7&
+ callback =Payeezy.callback&type=FDToken&credit_card.type=mastercard&
+ credit_card.cardholder_name=xyz&credit_card.card_number=5424180279791732&
+ credit_card.e xp_date=0416&credit_card.cvv=123
+ 
+ */
+
+- (NSURL*)constructGetFDTokenForCreditCard:(NSString *)cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token js_security_key:(NSString *)js_security_key callback:(NSString *)callback
+{
+    NSURLComponents *components = [NSURLComponents componentsWithString:self.url];
+    NSURLQueryItem *apikq = [NSURLQueryItem queryItemWithName:@"apikey" value:self.apiKey];
+    NSURLQueryItem *authq = [NSURLQueryItem queryItemWithName:@"auth" value:auth];
+    NSURLQueryItem *ta_tokenq = [NSURLQueryItem queryItemWithName:@"ta_token" value:ta_token];
+    NSURLQueryItem *js_security_keyq = [NSURLQueryItem queryItemWithName:@"js_security_key" value:js_security_key];
+    NSURLQueryItem *callbackq = [NSURLQueryItem queryItemWithName:@"callback" value:callback];
+    NSURLQueryItem *typeq = [NSURLQueryItem queryItemWithName:@"type" value:type];
+    NSURLQueryItem *credit_cardtypeq = [NSURLQueryItem queryItemWithName:@"credit_card.type" value:cardType];
+    NSURLQueryItem *credit_cardcardholder_name = [NSURLQueryItem queryItemWithName:@"cardHolderName" value:cardHolderName];
+    NSURLQueryItem *credit_cardcard_number = [NSURLQueryItem queryItemWithName:@"credit_card.card_number" value:cardNumber];
+    NSURLQueryItem *cardExpMMYYQ = [NSURLQueryItem queryItemWithName:@"credit_card.exp_date" value:cardExpMMYY];
+    NSURLQueryItem *cardCVVQ = [NSURLQueryItem queryItemWithName:@"credit_card.cvv" value:cardCVV];
+   
+    components.queryItems = @[ apikq,authq, ta_tokenq, js_security_keyq, callbackq, typeq, credit_cardtypeq, credit_cardcardholder_name, credit_cardcard_number, cardExpMMYYQ, cardCVVQ];
+   
+     NSURL *iURl = components.URL;
+    
+    
+    return iURl;
+}
 
 /**
  Define request structure for CreditCard Payload With Card CVV
@@ -1404,7 +1453,6 @@
 /**
  Define request structure for postATransactionWithPayload
  @param payload
-
  */
 
 -(void) postATransactionWithPayload:(NSDictionary*)payload
@@ -1419,21 +1467,25 @@
 }
 
 /**
- Define request structure for postATransactionWithPayload
+ Define request structure for getATransactionWithPayload
  @param payload
- 
  */
 
--(void) getATransactionWithPayload:(NSDictionary*)payload
+-(void) getATransactionWithPayload:(NSURL*)payload
                          completion:(void(^)(NSDictionary *dict, NSError *error))completion
 {
     BOOL networkStatus = [self isInternetReachable];
     if (!networkStatus) {
         completion(nil,[NSError errorWithDomain:@"No Internet Connection Found. Please connect to wifi or cellular data" code:100 userInfo:nil]);
     }else{
-        [self processPaymentOnInternetViaGET:payload completion:completion];
+        [self processSecurePaymentOnInternet:payload completion:completion];
     }
 }
+
+/**
+ Define request structure for processPaymentOnInternet
+ @param payload
+ */
 
 - (void)processPaymentOnInternet:(NSDictionary *)payload completion:(void (^)(NSDictionary *, NSError *))completion
 {
@@ -1458,18 +1510,12 @@
     [request setValue:nonce forHTTPHeaderField:@"nonce"];
     [request setValue:self.apiKey forHTTPHeaderField:@"apikey"];
     [request setValue:self.merchantToken forHTTPHeaderField:@"token"];
-    // new parameter added for 5/28 release
-    //[request setValue:self.merchantIdentifier forHTTPHeaderField:@"x-merchant-identifier"];
-    //[request setValue:self.trToken forHTTPHeaderField:@"trtoken"];
     
     // Convert your data and set your request's HTTPBody property
     SBJson4Writer * parseString = [[SBJson4Writer alloc] init];
     
     NSString* payloadString = [parseString stringWithObject:payload];
     request.HTTPBody = [payloadString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSLog(@"URL: %@",self.url); 
-    NSLog(@"Request: %@",payloadString);
     
     
     if (!errDataConversion) {
@@ -1478,13 +1524,9 @@
             
             NSError* errJSONConverison;
             if (completion) {
-                
                 if (!connectionError) {
-                    
                     if ([urlResponse respondsToSelector:@selector(statusCode)]) {
-                        
                         if ([(NSHTTPURLResponse *) urlResponse statusCode] < 300) {
-                            
                             NSDictionary* responseObject = [NSJSONSerialization
                                                             JSONObjectWithData:data
                                                             options:NSJSONReadingAllowFragments
@@ -1492,8 +1534,7 @@
                             completion(responseObject, nil);
                         }else{
                          
-
-                            NSDictionary* errorObject = [NSJSONSerialization
+                          NSDictionary* errorObject = [NSJSONSerialization
                                                          JSONObjectWithData:data
                                                          options:NSJSONReadingAllowFragments
                                                          error:&errJSONConverison];
@@ -1517,56 +1558,29 @@
 }
 
 
-- (void)processPaymentOnInternetViaGET:(NSDictionary *)payload completion:(void (^)(NSDictionary *, NSError *))completion
+- (void)processSecurePaymentOnInternet:(NSURL *)payload completion:(void (^)(NSDictionary *, NSError *))completion
 {
     NSError* errDataConversion;
     
-    NSString*timeStamp = [self getEpochTimeStamp];
+    /*
+    NSString *urlplusQueryParameters = [NSString stringWithFormat:@"%@apikey=%@&js_security_key=%@&callback=%@&auth=%@&ta_token=%@&type=%@&credit_card.type=%@&credit_card.cardholder_name=%@&credit_card.card_number=%@&credit_card.exp_date=%@%@&credit_card.cvv=%@", self.url,self.apiKey,payload[@"js_security_key"],payload[@"callback"],payload[@"auth"],payload[@"ta_token"],payload[@"type"],payload[@"cardholder_name"],payload[@"card_number"],payload[@"exp_date"],payload[@"cvv"]];
+    */
     
-    NSString *nonce = [self secureRandomNumber];
+   // NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL payload]];
     
-    NSString *hmacSignature = [self generateHMACforpayload:payload timeStamp:timeStamp nonce:nonce];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:payload];
     
     // Specify that it will be a POST request
     request.HTTPMethod = @"GET";
     
     // This is how we set header fields
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:hmacSignature forHTTPHeaderField:@"Authorization"];
+ 
     [request setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25" forHTTPHeaderField: @"User-Agent"];
     
-    [request setValue:timeStamp forHTTPHeaderField:@"timestamp"];
-    [request setValue:nonce forHTTPHeaderField:@"nonce"];
-    [request setValue:self.apiKey forHTTPHeaderField:@"apikey"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"token"];
     
-    [request setValue:self.merchantToken forHTTPHeaderField:@"js_security_key"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"ta_token"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"auth"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"token"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"callback"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"type"];
-    
-    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.type"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.cardholder_name"];
-    
-    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.card_number"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.exp_date"];
-    [request setValue:self.merchantToken forHTTPHeaderField:@"credit_card.cvv"];
-    
-    
-    
-    
-    // Convert your data and set your request's HTTPBody property
-    SBJson4Writer * parseString = [[SBJson4Writer alloc] init];
-    
-    NSString* payloadString = [parseString stringWithObject:payload];
-    request.HTTPBody = [payloadString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSLog(@"URL: %@",self.url);
-    NSLog(@"Request: %@",payloadString);
+    NSLog(@"URL: %@",request);
+  
     
     
     if (!errDataConversion) {
@@ -1609,7 +1623,6 @@
         
         completion(nil,errDataConversion);
     }
-    
     
 }
 
@@ -1711,18 +1724,18 @@
  
  */
 
--(void)submitGetFDTokenForCreditCard:(NSString*)cardType
-                      cardHolderName:(NSString*)cardHolderName
-                          cardNumber:(NSString*)cardNumber
-             cardExpirymMonthAndYear:(NSString*)cardExpMMYY
-                             cardCVV:(NSString*)cardCVV
-                                type:(NSString*)type
-                                auth:(NSString*)auth
-                            ta_token:(NSString*)ta_token
-                          completion:(void (^)(NSDictionary *dict, NSError* error))completion
+-(void)submitPostFDTokenForCreditCard:(NSString*)cardType
+                       cardHolderName:(NSString*)cardHolderName
+                           cardNumber:(NSString*)cardNumber
+              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
+                              cardCVV:(NSString*)cardCVV
+                                 type:(NSString*)type
+                                 auth:(NSString*)auth
+                             ta_token:(NSString*)ta_token
+                           completion:(void (^)(NSDictionary *dict, NSError* error))completion
 {
     
-    [self postATransactionWithPayload:[self constructGenerateFDTokenForCreditCard:cardType cardHolderName:cardHolderName cardNumber:cardNumber  cardExpMMYY:cardExpMMYY  cardCVV:cardCVV type:type auth:auth ta_token:ta_token ]  completion:^(NSDictionary *dict, NSError *error){
+    [self postATransactionWithPayload:[self constructPostFDTokenForCreditCard:cardType cardHolderName:cardHolderName cardNumber:cardNumber  cardExpMMYY:cardExpMMYY  cardCVV:cardCVV type:type auth:auth ta_token:ta_token ]  completion:^(NSDictionary *dict, NSError *error){
         
         if (error) {
             completion(nil, error);
@@ -1736,6 +1749,8 @@
         }
     }];
 }
+
+
 
 
 /**
@@ -1754,23 +1769,15 @@
  @return Returns
  @see
  
- Sample Payload:
- {
-	"type": "FDToken",
-	"credit_card": {
- "type": "VISA",
- "cardholder_name": "JohnSmith",
- "card_number": "4788250000028291",
- "exp_date": "1030",
- "cvv": "123"
- },
-	"auth": "false",
-	"ta_token": "NOIW"
- }
+ Sample Payload to get token using GET Token API :
+ 
+ https://api-cert.payeezy.com/v1/securitytokens? auth=false&ta_token=NOIW&apikey=y6pWAJNyJyjGv66IsVuWnklkKUPFbb0a&js_security_key=js-6125e57ce5c46e10087a545b9e9d7354c23e1a1670d9e9c7&callback =Payeezy.callback&type=FDToken&credit_card.type=mastercard&credit_card.cardholder_name=xyz&credit_card.card_number=5424180279791732&credit_card.e xp_date=0416&credit_card.cvv=123
+ 
+ credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] js_security_key:tokenizer[@"js_security_key"] callback:tokenizer[@"callback"]
  
  */
 
--(void)submitGETTokenizeCreditCards:(NSString*)cardType
+-(void)submitGetFDTokenForCreditCard:(NSString*)cardType
                       cardHolderName:(NSString*)cardHolderName
                           cardNumber:(NSString*)cardNumber
              cardExpirymMonthAndYear:(NSString*)cardExpMMYY
@@ -1778,10 +1785,12 @@
                                 type:(NSString*)type
                                 auth:(NSString*)auth
                             ta_token:(NSString*)ta_token
+                     js_security_key:(NSString*)js_security_key
+                            callback:(NSString*)callback
                           completion:(void (^)(NSDictionary *dict, NSError* error))completion
 {
     
-    [self postATransactionWithPayload:[self constructGenerateFDTokenForCreditCard:cardType cardHolderName:cardHolderName cardNumber:cardNumber  cardExpMMYY:cardExpMMYY  cardCVV:cardCVV type:type auth:auth ta_token:ta_token ]  completion:^(NSDictionary *dict, NSError *error){
+    [self getATransactionWithPayload:[self constructGetFDTokenForCreditCard:cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token js_security_key:(NSString *)js_security_key callback:(NSString *)callback ]  completion:^(NSDictionary *dict, NSError *error){
         
         if (error) {
             completion(nil, error);
@@ -1795,6 +1804,7 @@
         }
     }];
 }
+
 
 
 -(void)submitAuthorizeSplitDiscoverTransaction:(NSString*)totalAmount

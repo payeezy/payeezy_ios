@@ -42,7 +42,9 @@
 // Generate Token - Backward compatible -  GET API call
 // this sample only shows auth = false ...
 // refer documentation for more details  
-- (IBAction)getFDToken:(id)sender;// test case 1
+- (IBAction)postTokenizeCreditCards:(id)sender;// test case 1
+
+- (IBAction)getTokenizeCreditCards:(id)sender;// test case 1
 
 - (IBAction)purchaseVoidTransactionCVV:(id)sender;// test case 2
 
