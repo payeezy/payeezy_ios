@@ -21,7 +21,7 @@ Credit Card Payments - Sample app demonstate only credit card related tansaction
 * purchase-Refund
 * purchase-Void
 
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_OUT.png" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.png" alt="sample app"/>&nbsp;&nbsp;<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_OUT.png" alt="sample app"/></div>
 
 **creditCardPayments**
 Authorize Capture transactions - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
@@ -32,7 +32,7 @@ Authorize Capture transactions - Sample app demonstate only credit card related 
 * purchase-Void
 
 
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_OP.png" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_IN.png" alt="sample app"/>&nbsp;&nbsp;<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_OP.png" alt="sample app"/></div>
 
 
 **complexTransactions**
@@ -50,9 +50,9 @@ Many ways you can generate token ...based on your requirement.
 *	Generate Token with ta_token - auth true - GET/POST API
 *	Generate Token without  ta_token & auth -  - GET/POST API with 0$ Auth
 
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p1.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p2.png" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p1.png" alt="sample app"/>&nbsp;&nbsp;<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p2.png" alt="sample app"/></div>
 <br>
-<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p3.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p4.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p5.png" alt="sample app"/></div>
+<div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p3.png" alt="sample app"/>&nbsp;&nbsp;<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p4.png" alt="sample app"/>&nbsp;&nbsp;<img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p5.png" alt="sample app"/></div>
 
 refer ViewController.h for client implemenation of gettoken methods 
 
