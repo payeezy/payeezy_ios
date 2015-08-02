@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5CB4CC6B1AFC2AB70060BE26 /* AndroidPay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4CC6A1AFC2AB70060BE26 /* AndroidPay.jpg */; };
-		5CB4CC6D1AFC2DC00060BE26 /* android.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4CC6C1AFC2DC00060BE26 /* android.jpg */; };
-		5CBCCF671AFAADCB00B67A86 /* Android-Pay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CBCCF661AFAADCB00B67A86 /* Android-Pay.jpg */; };
 		5CBCCF6C1AFB2EEC00B67A86 /* american.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CBCCF681AFB2EEC00B67A86 /* american.jpg */; };
 		5CBCCF6D1AFB2EEC00B67A86 /* discover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CBCCF691AFB2EEC00B67A86 /* discover.jpg */; };
 		5CBCCF6E1AFB2EEC00B67A86 /* mastercard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CBCCF6A1AFB2EEC00B67A86 /* mastercard.jpg */; };
@@ -33,9 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5CB4CC6A1AFC2AB70060BE26 /* AndroidPay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AndroidPay.jpg; sourceTree = "<group>"; };
-		5CB4CC6C1AFC2DC00060BE26 /* android.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = android.jpg; sourceTree = "<group>"; };
-		5CBCCF661AFAADCB00B67A86 /* Android-Pay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Android-Pay.jpg"; sourceTree = "<group>"; };
 		5CBCCF681AFB2EEC00B67A86 /* american.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = american.jpg; sourceTree = "<group>"; };
 		5CBCCF691AFB2EEC00B67A86 /* discover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = discover.jpg; sourceTree = "<group>"; };
 		5CBCCF6A1AFB2EEC00B67A86 /* mastercard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mastercard.jpg; sourceTree = "<group>"; };
@@ -119,13 +113,10 @@
 		923E71F619BF40EF007891E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5CB4CC6C1AFC2DC00060BE26 /* android.jpg */,
-				5CB4CC6A1AFC2AB70060BE26 /* AndroidPay.jpg */,
 				5CBCCF681AFB2EEC00B67A86 /* american.jpg */,
 				5CBCCF691AFB2EEC00B67A86 /* discover.jpg */,
 				5CBCCF6A1AFB2EEC00B67A86 /* mastercard.jpg */,
 				5CBCCF6B1AFB2EEC00B67A86 /* visa.png */,
-				5CBCCF661AFAADCB00B67A86 /* Android-Pay.jpg */,
 				986A0AEB1AA1208100160732 /* FirstDataLogo-693x200.jpg */,
 				986A0AE91AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png */,
 				923E71F719BF40EF007891E3 /* Info.plist */,
@@ -217,16 +208,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CBCCF6F1AFB2EEC00B67A86 /* visa.png in Resources */,
-				5CB4CC6D1AFC2DC00060BE26 /* android.jpg in Resources */,
 				5CBCCF6C1AFB2EEC00B67A86 /* american.jpg in Resources */,
 				986A0AEC1AA1208100160732 /* FirstDataLogo-693x200.jpg in Resources */,
 				5CBCCF6D1AFB2EEC00B67A86 /* discover.jpg in Resources */,
 				5CBCCF6E1AFB2EEC00B67A86 /* mastercard.jpg in Resources */,
 				986A0AEA1AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png in Resources */,
 				923E720219BF40EF007891E3 /* Main.storyboard in Resources */,
-				5CBCCF671AFAADCB00B67A86 /* Android-Pay.jpg in Resources */,
 				923E720419BF40EF007891E3 /* Images.xcassets in Resources */,
-				5CB4CC6B1AFC2AB70060BE26 /* AndroidPay.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

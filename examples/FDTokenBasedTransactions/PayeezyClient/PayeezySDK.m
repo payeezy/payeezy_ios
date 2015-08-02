@@ -1471,14 +1471,14 @@
  @param payload
  */
 
--(void) getATransactionWithPayload:(NSURL*)payload
-                         completion:(void(^)(NSDictionary *dict, NSError *error))completion
+-(void) getATransactionWithPayload:(NSURL*)urlWithQParameter
+                         completion:(void(^)(NSString *strg, NSError *error))completion
 {
     BOOL networkStatus = [self isInternetReachable];
     if (!networkStatus) {
         completion(nil,[NSError errorWithDomain:@"No Internet Connection Found. Please connect to wifi or cellular data" code:100 userInfo:nil]);
     }else{
-        [self processSecurePaymentOnInternet:payload completion:completion];
+        [self processSecurePaymentOnInternet:urlWithQParameter completion:completion];
     }
 }
 
@@ -1558,71 +1558,30 @@
 }
 
 
-- (void)processSecurePaymentOnInternet:(NSURL *)payload completion:(void (^)(NSDictionary *, NSError *))completion
+- (void)processSecurePaymentOnInternet:(NSURL *)urlWithQParameter completion:(void (^)(NSString *, NSError *))completion
 {
-    NSError* errDataConversion;
     
-    /*
-    NSString *urlplusQueryParameters = [NSString stringWithFormat:@"%@apikey=%@&js_security_key=%@&callback=%@&auth=%@&ta_token=%@&type=%@&credit_card.type=%@&credit_card.cardholder_name=%@&credit_card.card_number=%@&credit_card.exp_date=%@%@&credit_card.cvv=%@", self.url,self.apiKey,payload[@"js_security_key"],payload[@"callback"],payload[@"auth"],payload[@"ta_token"],payload[@"type"],payload[@"cardholder_name"],payload[@"card_number"],payload[@"exp_date"],payload[@"cvv"]];
-    */
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:urlWithQParameter];
     
-   // NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL payload]];
-    
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:payload];
+    NSLog(@"URL: %@",request);
     
     // Specify that it will be a POST request
     request.HTTPMethod = @"GET";
     
-    // This is how we set header fields
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
- 
-    [request setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25" forHTTPHeaderField: @"User-Agent"];
+    NSError *error = [[NSError alloc] init];
     
+    NSHTTPURLResponse *responseCode = nil;
     
-    NSLog(@"URL: %@",request);
+    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+  
+    NSString* rString = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    
+    completion(rString, nil);
+    
+  
   
     
     
-    if (!errDataConversion) {
-        // Create url connection and fire request
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *urlResponse, NSData *data, NSError *connectionError) {
-            
-            NSError* errJSONConverison;
-            if (completion) {
-                
-                if (!connectionError) {
-                    
-                    if ([urlResponse respondsToSelector:@selector(statusCode)]) {
-                        
-                        if ([(NSHTTPURLResponse *) urlResponse statusCode] < 300) {
-                            
-                            NSDictionary* responseObject = [NSJSONSerialization
-                                                            JSONObjectWithData:data
-                                                            options:NSJSONReadingAllowFragments
-                                                            error:&errJSONConverison];
-                            completion(responseObject, nil);
-                        }else{
-                            
-                            
-                            NSDictionary* errorObject = [NSJSONSerialization
-                                                         JSONObjectWithData:data
-                                                         options:NSJSONReadingAllowFragments
-                                                         error:&errJSONConverison];
-                            
-                            completion(nil, [NSError errorWithDomain:@"Payeezy Error Info" code:[(NSHTTPURLResponse *) urlResponse statusCode] userInfo:errorObject]);
-                        }
-                    }
-                }else{
-                    
-                    completion(nil,connectionError);
-                }
-            }
-            
-        }];
-    }else{
-        
-        completion(nil,errDataConversion);
-    }
     
 }
 
@@ -1787,21 +1746,18 @@
                             ta_token:(NSString*)ta_token
                      js_security_key:(NSString*)js_security_key
                             callback:(NSString*)callback
-                          completion:(void (^)(NSDictionary *dict, NSError* error))completion
+                          completion:(void (^)(NSString *dict, NSError* error))completion
 {
     
-    [self getATransactionWithPayload:[self constructGetFDTokenForCreditCard:cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token js_security_key:(NSString *)js_security_key callback:(NSString *)callback ]  completion:^(NSDictionary *dict, NSError *error){
+    [self getATransactionWithPayload:[self constructGetFDTokenForCreditCard:cardType cardHolderName:(NSString *)cardHolderName cardNumber:(NSString *)cardNumber  cardExpMMYY:(NSString *)cardExpMMYY  cardCVV:(NSString *)cardCVV type:(NSString *)type auth:(NSString *)auth ta_token:(NSString *)ta_token js_security_key:(NSString *)js_security_key callback:(NSString *)callback ]  completion:^(NSString *dict, NSError *error){
         
         if (error) {
             completion(nil, error);
             return;
         }
         
-        if([dict valueForKey:STATUS_KEY_NAME]){
-            completion(dict,nil);
-        }else{
-            completion(dict,[NSError errorWithDomain:SERVER_ERROR_MSG code:101 userInfo:nil]);
-        }
+        completion(dict,nil);
+        
     }];
 }
 

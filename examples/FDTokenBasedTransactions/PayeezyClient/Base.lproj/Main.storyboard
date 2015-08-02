@@ -30,7 +30,7 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="postTokenizeCreditCards:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tKw-Ip-p4u"/>
+                                    <action selector="getTokenizeCreditCards:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="agv-Mx-KBE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOB-T7-btZ">
@@ -135,5 +135,5 @@
     <resources>
         <image name="Payeezy-DevelopersLogo_Horz (3).png" width="1278" height="406"/>
     </resources>
-    <color key="tintColor" patternImage="50B445A5-33C1-4BEF-9C7C-EAD023EFEACD" colorSpace="pattern"/>
+    <color key="tintColor" patternImage="BA881415-5B87-4E51-AA7E-6391CC5C4283" colorSpace="pattern"/>
 </document>

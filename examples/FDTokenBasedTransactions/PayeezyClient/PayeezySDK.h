@@ -95,7 +95,7 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
                              ta_token:(NSString*)ta_token
                       js_security_key:(NSString *)js_security_key
                              callback:(NSString *)callback
-                           completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+                           completion:(void (^)(NSString *dict, NSError* error))completion;
 
 /*!
  @discussion

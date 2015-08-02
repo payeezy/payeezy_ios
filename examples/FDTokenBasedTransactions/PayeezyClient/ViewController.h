@@ -36,13 +36,15 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *wait4Response;
 
-// Generate Token with ta_token - auth false - GET API
-// Generate Token with ta_token - auth true - GET API
-// Generate Token without  ta_token & auth -  - GET API with 0$ Auth
-// Generate Token - Backward compatible -  GET API call
-// this sample only shows auth = false ...
-// refer documentation for more details  
+
+// Generate Token without  ta_token & auth -  - POST API with 0$ Auth
+// Generate Token - Backward compatible -  POST API call
+// refer documentation for more details
 - (IBAction)postTokenizeCreditCards:(id)sender;// test case 1
+
+// Generate Token without  ta_token & auth -  GET API with 0$ Auth
+// Generate Token - Backward compatible -  GET API call
+// refer documentation for more details
 
 - (IBAction)getTokenizeCreditCards:(id)sender;// test case 1
 

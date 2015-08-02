@@ -215,7 +215,7 @@
         NSDictionary* tokenizer = @{
                                       @"type":@"FDToken",  // you can change to Amex/Discover/Master Card here
                                       @"auth":@"false",
-                                      @"ta_token":@"NOIW"
+                                      @"ta_token":@"NOIW"   // to fetch ta_token please refer developer.payeezy
                                     };
         
         PayeezySDK* myClient = [[PayeezySDK alloc]initWithApiKey:KApiKey apiSecret:KApiSecret merchantToken:KToken url:KURL];
@@ -278,31 +278,68 @@
         [self.wait4Response startAnimating];
     }
     
-    [myClient submitGetFDTokenForCreditCard:credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] js_security_key:tokenizer[@"js_security_key"] callback:tokenizer[@"callback"] completion:^(NSDictionary *dict, NSError *error)
+    [myClient submitGetFDTokenForCreditCard:credit_card[@"type"] cardHolderName:credit_card[@"cardholder_name"] cardNumber:credit_card[@"card_number"] cardExpirymMonthAndYear:credit_card[@"exp_date"] cardCVV:credit_card[@"cvv"] type:tokenizer[@"type"] auth:tokenizer[@"auth"] ta_token:tokenizer[@"ta_token"] js_security_key:tokenizer[@"js_security_key"] callback:tokenizer[@"callback"] completion:^(NSString *dict, NSError *error)
      {
          if([self.wait4Response isAnimating]){
              [self.wait4Response stopAnimating];
              
          }
-         
-         
+        
+         // parse the response  substring to read = Payeezy.callback( .... )
+         NSString *result = nil;
          NSString *authStatusMessage = nil;
          
-         NSDictionary *result = [dict objectForKey:@"results"];
+         
+         // Determine "<div>" location
+         NSRange divRange = [dict rangeOfString:@"(" options:NSCaseInsensitiveSearch];
+         if (divRange.location != NSNotFound)
+         {
+             // Determine "</div>" location according to "<div>" location
+             NSRange endDivRange;
+             
+             endDivRange.location = divRange.length + divRange.location;
+             endDivRange.length   = [dict length] - endDivRange.location;
+             endDivRange = [dict rangeOfString:@")" options:NSCaseInsensitiveSearch range:endDivRange];
+             
+             if (endDivRange.location != NSNotFound)
+             {
+                 // Tags found: retrieve string between them
+                 divRange.location += divRange.length;
+                 divRange.length = endDivRange.location - divRange.location;
+                 
+                 result = [dict substringWithRange:divRange];
+             }
+         }
+         
+         //parse login end
+         
+         // convert json string to NSDictionary
+         
+         NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
+         id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+         
+         NSDictionary *results = [json objectForKey:@"results"];
+         
+         
+         NSDictionary *tokenKey = [results objectForKey:@"token"];
+         
+       //  NSLog(@"results ::::: %@",tokenKey);
+         
+         self.fdTokenValue =[tokenKey objectForKey:@"value"];
+
+        // NSLog(@"results ::::: %@",self.fdTokenValue);
          
          authStatusMessage = [NSString
-                              stringWithFormat:@"Transaction details\r status:%@ \r  correlation id:%@ \r Tokenized Value:%@ \r type:%@  ", [dict objectForKey:@"status"],[dict objectForKey:@"correlation_id"],
-                              [result objectForKey:@"value"],
-                              [dict objectForKey:@"type"]];
-         
-         self.fdTokenValue =[result objectForKey:@"value"];
-       
+                              stringWithFormat:@"Transaction details\r status:%@ \r  correlation id:%@ \r Tokenized Value:%@ \r type:%@  ", [results objectForKey:@"status"],[results objectForKey:@"correlation_id"],
+                              [tokenKey objectForKey:@"value"],
+                              [tokenKey objectForKey:@"type"]];
          
          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"First Data Payment Authorization"
                                                          message:authStatusMessage delegate:self
                                                cancelButtonTitle:@"Dismiss"
                                                otherButtonTitles:nil];
          [alert show];
+
      }];
     
 }
