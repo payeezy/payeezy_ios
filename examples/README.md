@@ -13,7 +13,7 @@ Sample app Print screen :
 <img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/app%20file%20structure%20.png" alt="dir structure" style="width: 100px;height:120px"/>
 
 
-simpleTransactions 
+**simpleTransactions** 
 Credit Card Payments - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter amount in dollars and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
 * authorize-Amt0
 * authorize-Void
@@ -23,7 +23,7 @@ Credit Card Payments - Sample app demonstate only credit card related tansaction
 
 <div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/simpleTransactions/printscreen/iOS_SDK_simple_transaction_sample_OUT.png" alt="sample app"/></div>
 
-creditCardPayments
+**creditCardPayments**
 Authorize Capture transactions - Sample app demonstate only credit card related tansactions Primary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
 * authorize-Amt0
 * authorize-Void
@@ -35,7 +35,8 @@ Authorize Capture transactions - Sample app demonstate only credit card related 
 <div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_IN.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/creditCardPayments/printscreen/iOS_SDK_CC_Sample_OP.png" alt="sample app"/></div>
 
 
-complexTransactions - Sample app demonstate only credit card related tansactions Scondary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
+**complexTransactions**
+Sample app demonstate only credit card related tansactions Scondary transactions. App display text box to enter CC Name/amount/CC exp and then you can click on CC primary transactions. Please note that these transactions are not token based transations. all the transactions are made based on CC details.
 
 *	Credit Card Payments
 *	PayPal Transactions
@@ -43,7 +44,8 @@ complexTransactions - Sample app demonstate only credit card related tansactions
 *	eCheck (via TeleCheck) Transactions
 *	3D Secure Transactions
 
-FDTokenBasedTransactions - Many ways you can generate token ...based on your requirement. 
+**FDTokenBasedTransactions**
+Many ways you can generate token ...based on your requirement. 
 *	Generate Token with ta_token - auth false - GET/POST API
 *	Generate Token with ta_token - auth true - GET/POST API
 *	Generate Token without  ta_token & auth -  - GET/POST API with 0$ Auth
@@ -51,6 +53,16 @@ FDTokenBasedTransactions - Many ways you can generate token ...based on your req
 <div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p1.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p2.png" alt="sample app"/></div>
 <br>
 <div><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p3.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p4.png" alt="sample app"/><img src="https://github.com/payeezy/payeezy_ios/raw/master/examples/FDTokenBasedTransactions/printscreen/p5.png" alt="sample app"/></div>
+
+refer ViewController.h for client implemenation of gettoken methods 
+
+- (IBAction)postTokenizeCreditCards:(id)sender;
+- (IBAction)getTokenizeCreditCards:(id)sender;
+
+refer PayeezySDK.h file for sdk gettoken by get/post code refrence 
+
+submitPostFDTokenForCreditCard()
+submitGetFDTokenForCreditCard()
 
 Securing APIKey, token constant values in IOS app : http://stackoverflow.com/questions/9448632/best-practices-for-ios-applications-security?rq=1
 
