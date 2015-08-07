@@ -16,6 +16,9 @@ The iOS mobile SDK requires iOS SDK 6 and XCode 5.1 and above
 ## iOS SDK Integration
 We've written a simple step by step integration [iOS guide](../../tree/master/guide/payeezy_iOS_SDK042015.pdf) that explains everything from installation, to creating payment tokens, to Apple Pay integration and more.
 
+#####To install with [Cocoapods](http://cocoapods.org), add the following to your Podfile:
+`pod 'PayeezySDK', :git => 'https://github.com/payeezy/payeezy_ios.git'`
+
 # Getting Started with Payeezy
 Using below listed steps, you can easily integrate your mobile/web payment application with Payeezy APIs and go LIVE!
 *	LITE  - REGISTRATION  
