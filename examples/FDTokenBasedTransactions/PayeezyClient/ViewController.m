@@ -10,19 +10,36 @@
 #import "PayeezySDK.h"
 
 
- // Credentials for shared test account in PROD/CERT environment
- // Does NOT process actual transactions cert credentials
-#define KApiKey     @"y6pWAJNyJyjGv66IsVuWnklkKUPFbb0a"
-#define KApiSecret  @"86fbae7030253af3cd15faef2a1f4b67353e41fb6799f576b5093ae52901e6f7"
+   // Credentials for shared test account in PROD/CERT environment
+   // Does NOT process actual transactions cert credentials
+//#define KApiKey     @"y6pWAJNyJyjGv66IsVuWnklkKUPFbb0a"
+//#define KApiSecret  @"86fbae7030253af3cd15faef2a1f4b67353e41fb6799f576b5093ae52901e6f7"
+//#define KToken      @"fdoa-a480ce8951daa73262734cf102641994c1e55e7cdf4c02b6"
+
+/* Refer developer.payeezy.com = d.payeezy.com = dev portal
+ Securing APIKey, token constant values in IOS app :
+ http://stackoverflow.com/questions/9448632/best-practices-for-ios-applications-security?rq=1
+ */
+
+/* Cert/Demo enviroment for test and integartion */
+#define kEnvironment @"CERT"
+
+/* Refer to dev portal -> 'My APIs' page -> app -> API Key */
+#define KApiKey             @"kJ0bejUU3FrAUSAKp6DHZYDkdFKYgcj9"
+
+/* Refer to dev portal -> 'My APIs' page -> app -> Api Secret */
+#define KApiSecret          @"49b1d4dbe0446711d1435f2a32ce2eea55dfe8681fc2e1c9666b8e5b5218ffe8"
+
+/* Refer to dev portal -> 'My Merchants' page -> SANDBOX -> Token */
 #define KToken      @"fdoa-a480ce8951daa73262734cf102641994c1e55e7cdf4c02b6"
- 
- // use following url to get token (POST) and proceed for transactions
+
+/* use following url to get token (POST) and proceed for transactions */
 #define KURL        @"https://api-cert.payeezy.com/v1/transactions/tokens"
 
-// use following url to get token (GET) and proceed for transactions
+/* use following url to get token (GET) and proceed for transactions */
 #define SURL        @"https://api-cert.payeezy.com/v1/securitytokens?"
 
- // use following url for transactions
+/* use following url for transactions */
 #define PURL        @"https://api-cert.payeezy.com/v1/transactions"
  
 

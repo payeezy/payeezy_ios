@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -30,7 +29,7 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="getTokenizeCreditCards:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="agv-Mx-KBE"/>
+                                    <action selector="postTokenizeCreditCards:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Gm0-UA-COL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOB-T7-btZ">
@@ -135,5 +134,5 @@
     <resources>
         <image name="Payeezy-DevelopersLogo_Horz (3).png" width="1278" height="406"/>
     </resources>
-    <color key="tintColor" patternImage="BA881415-5B87-4E51-AA7E-6391CC5C4283" colorSpace="pattern"/>
+    <color key="tintColor" patternImage="04E5D509-E9F5-4EA3-A25F-CDB69178E337" colorSpace="pattern"/>
 </document>

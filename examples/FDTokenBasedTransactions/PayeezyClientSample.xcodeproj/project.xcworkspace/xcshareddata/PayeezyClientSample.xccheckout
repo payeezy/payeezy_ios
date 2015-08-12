@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>69571641-053E-45A4-A322-64E8DB1F560D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>PayeezyClientSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
 		<string>https://github.com/payeezy/payeezy_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>examples/FDTokenBasedTransactions/PayeezyClientSample.xcodeproj/project.xcworkspace</string>
+	<string>examples/FDTokenBasedTransactions/PayeezyClientSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
