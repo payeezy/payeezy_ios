@@ -29,7 +29,7 @@
 		5CBCCF701AFBA3E500B67A86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5CBCCF721AFBA3FE00B67A86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5CBCCF741AFBA40600B67A86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		923E71F319BF40EF007891E3 /* GermanDirectDebit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GermanDirectDebit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		923E71F319BF40EF007891E3 /* GDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923E71F719BF40EF007891E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		923E71F819BF40EF007891E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		923E71FA19BF40EF007891E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		923E71F419BF40EF007891E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				923E71F319BF40EF007891E3 /* GermanDirectDebit.app */,
+				923E71F319BF40EF007891E3 /* GDD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		923E71F219BF40EF007891E3 /* GermanDirectDebit */ = {
+		923E71F219BF40EF007891E3 /* GDD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GermanDirectDebit" */;
+			buildConfigurationList = 923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GDD" */;
 			buildPhases = (
 				923E71EF19BF40EF007891E3 /* Sources */,
 				923E71F019BF40EF007891E3 /* Frameworks */,
@@ -147,9 +147,9 @@
 			);
 			dependencies = (
 			);
-			name = GermanDirectDebit;
+			name = GDD;
 			productName = PayeezyClient;
-			productReference = 923E71F319BF40EF007891E3 /* GermanDirectDebit.app */;
+			productReference = 923E71F319BF40EF007891E3 /* GDD.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GermanDirectDebit" */;
+			buildConfigurationList = 923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GDD" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				923E71F219BF40EF007891E3 /* GermanDirectDebit */,
+				923E71F219BF40EF007891E3 /* GDD */,
 			);
 		};
 /* End PBXProject section */
@@ -324,7 +324,7 @@
 				INFOPLIST_FILE = PayeezyClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = GermanDirectDebit;
+				PRODUCT_NAME = GDD;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -343,7 +343,7 @@
 				INFOPLIST_FILE = PayeezyClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = GermanDirectDebit;
+				PRODUCT_NAME = GDD;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -351,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GermanDirectDebit" */ = {
+		923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GDD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				923E721119BF40EF007891E3 /* Debug */,
@@ -360,7 +360,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GermanDirectDebit" */ = {
+		923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GDD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				923E721419BF40EF007891E3 /* Debug */,

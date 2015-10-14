@@ -1,14 +1,16 @@
 //
 //  ViewController.h
 //  PayeezyClient
+//
+//  Created by First Data Corporation on 5/28/2015.
+//  Copyright (c) 2015 First Data Corporation. All rights reserved.
+//
 
-// 5 test cases are covered in this sample
 
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>{
-    NSArray * _cardItems;
-     NSArray * _featureItems;
+    NSArray * _items;
 }
 
 
@@ -20,32 +22,33 @@
 // create out UI image objects
 @property (strong, nonatomic) UIImage * masterCard ;
 @property (strong, nonatomic) UIImage * visaCard ;
+@property (strong, nonatomic) UIImage * amexCard ;
+@property (strong, nonatomic) UIImage * discoverCard;
 
-
-@property (nonatomic, strong) NSArray * cardItems;
-@property (nonatomic, strong) NSArray * featureItems;
-
+@property (nonatomic, strong) NSArray * items;
+@property (nonatomic, strong) NSArray * itemsOfType;
 @property (nonatomic, strong) NSDictionary* icredit_card;
-@property (nonatomic, strong) NSDictionary* ifeature;
-
+@property (nonatomic, strong) NSString* reflection;
 @property (nonatomic, strong) NSString* fdTokenValue;
+@property (nonatomic, strong) NSString* transaction_type;
 
 @property (nonatomic, strong) IBOutlet UIPickerView * cardPickerView;
-@property (nonatomic, strong) IBOutlet UIPickerView * featurePickerView;
+@property (nonatomic, strong) IBOutlet UIPickerView * typePickerView;
 @property (strong, nonatomic) IBOutlet UITextField *amountEntered;
 @property (strong, nonatomic) IBOutlet UITextField *merchantNameEntered;
 @property (weak, nonatomic)   IBOutlet UIImageView *carditCardType;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *wait4Response;
 
-- (IBAction)getRateReferenceResponse:(id)sender;// get rate test case 1
+@property (nonatomic, strong) UISegmentedControl *dccSegmentedControl;
 
-- (IBAction)purchaseVoidTransaction:(id)sender;// test case 2
+- (IBAction)segmentSwitch:(id)sender;
 
-- (IBAction)purchaseRefundTransaction:(id)sender; // test case 3
+- (IBAction)purchaseVoidTransactionForDCC:(id)sender;// test case 1
 
-- (IBAction)nakedRefundTransaction:(id)sender;// test case 4
+- (IBAction)purchaseRefundTransactionForDCC:(id)sender; // test case 2
 
+- (IBAction)nakedRefundTransactionForDCC:(id)sender;// test case 3
 
 
 @end

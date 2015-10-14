@@ -50,6 +50,75 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
       merchantToken:(NSString *)merchantToken
                 url:(NSString *)url;
 
+/*!
+ @discussion
+ PayeezyClient setURL method
+
+ @param url
+ @result Returns self
+ @see sand/test enviroment url=https://api-cert.payeezy.com/v1/transactions
+ @see live enviroment url https://api.payeezy.com/v1/transactions
+ */
+
+-(id)setURL:(NSString *)url;
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_CVV:(NSString*)cardCVV
+                                                       cardExpMMYY:(NSString*)cardExpMMYY
+                                                        cardNumber:(NSString*)cardNumber
+                                                    cardHolderName:(NSString*)cardHolderName
+                                                          cardType:(NSString*)cardType
+                                                      currencyCode:(NSString*)currencyCode
+                                                       totalAmount:(NSString*)totalAmount
+                                                   transactionType:(NSString*)transactionType
+                                                            method:(NSString*)method
+                                                           rate_id:(NSString*)rate_id
+                                                      dcc_accepted:(NSString*)dcc_accepted
+                                                        completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_AVS:(NSString*)cardCVV
+                                                           cardExpMMYY:(NSString*)cardExpMMYY
+                                                            cardNumber:(NSString*)cardNumber
+                                                        cardHolderName:(NSString*)cardHolderName
+                                                              cardType:(NSString*)cardType
+                                                          currencyCode:(NSString*)currencyCode
+                                                           totalAmount:(NSString*)totalAmount
+                                                       transactionType:(NSString*)transactionType
+                                                                method:(NSString*)method
+                                                               rate_id:(NSString*)rate_id
+                                                          dcc_accepted:(NSString*)dcc_accepted
+                                                          billing_city:(NSString *)billing_city
+                                                       billing_country:(NSString *)billing_country
+                                                         billing_email:(NSString *)billing_email
+                                                        billing_street:(NSString *)billing_street
+                                                billing_state_province:(NSString *)billing_state_province
+                                               billing_zip_postal_code:(NSString *)billing_zip_postal_code
+                                                            phone_type:(NSString *)phone_type
+                                                          phone_number:(NSString *)phone_number
+                                                            completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_SoftDesc:(NSString *)totalAmount
+                                                            transactionType:(NSString *)transactionType
+                                                                     method:(NSString *)method
+                                                               currencyCode:(NSString *)currencyCode
+                                                                    cardCVV:(NSString *)cardCVV
+                                                                cardExpMMYY:(NSString *)cardExpMMYY
+                                                                 cardNumber:(NSString *)cardNumber
+                                                             cardHolderName:(NSString *)cardHolderName
+                                                                   cardType:(NSString *)cardType
+                                                                    rate_id:(NSString *)rate_id
+                                                               dcc_accepted:(NSString *)dcc_accepted
+                                                                  dbaNameSD:(NSString *)dbaNameSD
+                                                                   streetSD:(NSString *)streetSD
+                                                                   regionSD:(NSString *)regionSD
+                                                                      midSD:(NSString *)midSD
+                                                                      mccSD:(NSString *)mccSD
+                                                               postalCodeSD:(NSString *)postalCodeSD
+                                                              countryCodeSD:(NSString *)countryCodeSD
+                                                      merchantContactInfoSD:(NSString *)merchantContactInfoSD
+                                                                 completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
 
 /*!
  @discussion 
@@ -808,10 +877,48 @@ FOUNDATION_EXPORT const unsigned char PayeezyClientVersionString[];
                                        completion:(void (^)(NSDictionary *dict, NSError* error))completion;
 
 
--(void)submitRequestForDCCExchangeRate:(NSString *)rate_type
-                                   bin:(NSString *)bin
-                                amount:(NSString *)amount
-                            completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+/*
+ card rate  {
+ "rate_type":"card_rate",
+ "bin":"438980",
+ "amount":"100"
+ }
+ @discussion
+ Dynamic Currency Conversion(DCC) - getCardRateDCC
+ PayeezyClient method to process credit card payments in GBP/EUR
+ Merchant sends the Amount and the First 6 Digits of the credit card number(BIN). Based on BIN IPG figures out the
+ Currency Code to which the exchange rate has to be applied
+ @param amount
+ @param bin
+ @result Returns rate_id
+ @see
+ */
+
+
+- (void)getCardRateDCC:(NSString*)bin
+                amount:(NSString*)amount
+            completion:(void (^)(NSDictionary *dict, NSError* error))completion;
+
+/*
+ {
+ "rate_type":"merchant_rate",
+ "currency_code":"USD",
+ "amount":"100"
+ }
+ 
+ @discussion
+ Dynamic Currency Conversion(DCC) - getMerchantRateDP
+ PayeezyClient method to process credit card payments in GBP/EUR
+ Merchant sends the Amount and the Currency Code to which the exchange rate has to be applied
+ @param amount
+ @param currencycode
+ @result Returns rate_id
+ @see
+ */
+
+-(void)getMerchantRateDCC:(NSString*)currency_code
+                   amount:(NSString*)amount
+               completion:(void (^)(NSDictionary *dict, NSError* error))completion;
 
 @end
 

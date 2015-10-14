@@ -1,7 +1,10 @@
 //
 //  PayeezySDK.m
 //  PayeezyClientSample
-
+//
+//  Created by First Data Corporation on 5/28/2015.
+//  Copyright (c) 2015 First Data Corporation. All rights reserved.
+//
 
 #import "PayeezySDK.h"
 
@@ -50,6 +53,23 @@
         self.apiKey = apiKey;
         self.apiSecret = apiSecret;
         self.merchantToken = merchantToken;
+        self.url= url;
+    }
+    return self;
+}
+
+/*!
+ @discussion
+ PayeezyClient setURL method
+ 
+ @param url
+ @result Returns self
+ @see sand/test enviroment url=https://api-cert.payeezy.com/v1/transactions
+ @see live enviroment url https://api.payeezy.com/v1/transactions
+ */
+
+-(id)setURL:(NSString *)url {
+    if(self){
         self.url= url;
     }
     return self;
@@ -150,8 +170,6 @@
 }
 
 
-
-
 /**
  
  @param cardCVV
@@ -170,12 +188,20 @@
  @param transactionType
  @param merchantRef
  **/
--(void)submitRequestForDCCExchangeRate:(NSString *)rate_type
-                                   bin:(NSString *)bin
-                                amount:(NSString *)amount
-                            completion:(void (^)(NSDictionary *dict, NSError* error))completion
+-(void)submitAuthorizePurchaseTransactionWithCreditCardDetails:(NSString*)cardCVV
+                                             cardExpMMYY:(NSString*)cardExpMMYY
+                                              cardNumber:(NSString*)cardNumber
+                                          cardHolderName:(NSString*)cardHolderName
+                                                cardType:(NSString*)cardType
+                                            currencyCode:(NSString*)currencyCode
+                                             totalAmount:(NSString*)totalAmount
+                                             merchantRef:(NSString*)merchantRef
+                                         transactionType:(NSString*)transactionType
+                                              token_type:(NSString*)token_type
+                                                  method:(NSString*)method
+                                              completion:(void (^)(NSDictionary *dict, NSError* error))completion
 {
-    [self postATransactionWithPayload:[self constructExchangeRatePayload:rate_type bin:(NSString *)bin amount:(NSString *)amount]  completion:^(NSDictionary *dict, NSError *error){
+    [self postATransactionWithPayload:[self constructCreditCardPayloadWithCardCVV:cardCVV cardExpMMYY:cardExpMMYY cardNumber:cardNumber cardHolderName:cardHolderName cardType:cardType currencyCode:currencyCode totalAmount:totalAmount merchantRef:merchantRef transactionType:transactionType token_type:token_type method:method]  completion:^(NSDictionary *dict, NSError *error){
         
         if (error) {
             completion(nil, error);
@@ -300,7 +326,69 @@
     return [NSDictionary dictionaryWithObjects:payloadValues forKeys:payloadKeys];
 }
 
+//
 
+/**
+ {
+ "rate_type":"card_rate",
+ "bin":"438980",
+ "amount":"100"
+ }
+ 
+ Define request structure for Card Rate DCC Payload
+ @param bin
+ @param amount
+ @return Returns
+ @see
+ */
+- (NSDictionary*)constructCardRateDCCPayload:(NSString *)bin amount:(NSString *)amount
+{
+   
+    NSArray *payloadKeys = @[
+                             @"rate_type",
+                             @"bin",
+                             @"amount"
+                             ];
+    
+    NSArray *payloadValues = @[
+                               @"card_rate",
+                               bin,
+                               amount
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:payloadValues forKeys:payloadKeys];
+}
+
+/**
+ {
+ "rate_type":"merchant_rate",
+ "currency_code":"USD",
+ "amount":"100"
+ }
+ 
+ Define request structure for Merchant Rate DCC Payload
+ @param currency_code
+ @param amount
+ @return Returns
+ @see
+ */
+- (NSDictionary*)constructMerchantRateDCCPayload:(NSString *)currency_code amount:(NSString *)amount
+{
+    
+    NSArray *payloadKeys = @[
+                             @"rate_type",
+                             @"currency_code",
+                             @"amount"
+                             ];
+    
+    NSArray *payloadValues = @[
+                               @"merchant_rate",
+                               currency_code,
+                               amount
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:payloadValues forKeys:payloadKeys];
+}
 
 /**
  Define request structure for L2 Authorize Transaction
@@ -942,35 +1030,90 @@
 }
 
 /**
- Define request structure for DCC to get exchange rate
- @param rate_type  rate_type payload parameter
- @param bin credit-card payload parameter
- @param amount credit-card payload parameter
+ Define request structure for CreditCard Payload With Card CVV
+ @param cardCVV  credit-card payload parameter
+ @param cardExpMMYY credit-card payload parameter
+ @param cardNumber credit-card payload parameter
+ @param cardHolderName credit-card payload parameter
+ @param cardType creditcard payload parameter
+ @param currencyCode
+ @param totalAmount
+ @param cardType
+ @param currencyCode
+ @param totalAmount
+ @param merchantRef
+ @param transactionType
  @return Returns
  @see
  
  {
- "rate_type":"card_rate",
- "bin":"438980",
- "amount":"100"
+	"merchant_ref": "Astonishing-Sale",
+	"transaction_type": "authorize",
+	"method": "token",
+	"amount": "200",
+	"currency_code": "USD",
+	"token": {
+        "token_type": "FDToken",
+        "token_data": {
+                "type": "visa",
+               "value": "2537446225198291",
+     "cardholder_name": "JohnSmith",
+            "exp_date": "1030"
+        }
+	}
  }
  */
 
-- (NSDictionary*)constructExchangeRatePayload:(NSString *)rate_type bin:(NSString *)bin amount:(NSString *)amount
+- (NSDictionary*)constructCreditCardPayloadWithCardCVV:(NSString *)cardCVV cardExpMMYY:(NSString *)cardExpMMYY cardNumber:(NSString *)cardNumber cardHolderName:(NSString *)cardHolderName cardType:(NSString *)cardType currencyCode:(NSString *)currencyCode totalAmount:(NSString *)totalAmount merchantRef:(NSString *)merchantRef transactionType:(NSString*)transactionType token_type:(NSString *)token_type method:(NSString *)method
 {
-    NSArray *rate_referenceKeys = @[
-                                    @"rate_type",
-                                    @"bin",
-                                    @"amount"
-                                    ];
     
-    NSArray *rate_referenceValues = @[
-                                      rate_type,
-                                      bin,
-                                      amount
-                                      ];
+    NSArray *token_dataKeys = @[
+                                @"type",
+                                @"value",
+                                @"cardholder_name",
+                                @"exp_date"
+                                ];
     
-    return [NSDictionary dictionaryWithObjects:rate_referenceValues forKeys:rate_referenceKeys];
+    NSArray *token_dataValues = @[
+                                  cardType,
+                                  cardNumber,
+                                  cardHolderName,
+                                  cardExpMMYY
+                                  ];
+    
+    NSDictionary *token_data_dict = [NSDictionary dictionaryWithObjects:token_dataValues forKeys:token_dataKeys];
+    
+    NSArray *tokenKeys = @[
+                           @"token_type",
+                           @"token_data"
+                           ];
+    
+    NSArray *tokenValues = @[
+                            token_type,
+                            token_data_dict
+                            ];
+    
+    NSDictionary *token_dict = [NSDictionary dictionaryWithObjects:tokenValues forKeys:tokenKeys];
+
+    NSArray *generateTokenKeys = @[
+                             @"merchant_ref",
+                             @"transaction_type",
+                             @"method",
+                             @"amount",
+                             @"currency_code",
+                             @"token"
+                             ];
+    
+    NSArray *generateTokenValues = @[
+                               merchantRef,
+                               transactionType,
+                               method,
+                               totalAmount,
+                               currencyCode,
+                               token_dict
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:generateTokenValues forKeys:generateTokenKeys];
 }
 
 
@@ -1325,20 +1468,17 @@
 - (NSDictionary*)constructVoidCaptureRefundCreditCardPayload:(NSString *)merchantRef transactionTag:(NSString *)transactionTag  transactionType:(NSString*)transactionType transactionId:(NSString *)transactionId  paymentMethodType:(NSString *)paymentMethodType totalAmount:(NSString *)totalAmount currencyCode:(NSString *)currencyCode
 {
     NSArray *payloadKeys = @[
-                             @"merchant_ref",
                              @"transaction_tag",
                              @"transaction_type",
-                           //  @"transaction_id",
                              @"method",
                              @"amount",
                              @"currency_code"
                              ];
     
     NSArray *payloadValues = @[
-                               merchantRef,
+                               
                                transactionTag,
                                transactionType,
-                            //   transactionId,
                                paymentMethodType,
                                totalAmount,
                                currencyCode
@@ -1453,7 +1593,6 @@
     NSString* payloadString = [parseString stringWithObject:payload];
     request.HTTPBody = [payloadString dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSLog(@"URL: %@",request);
     
     if (!errDataConversion) {
         // Create url connection and fire request
@@ -1463,13 +1602,7 @@
             if (completion) {
                 if (!connectionError) {
                     if ([urlResponse respondsToSelector:@selector(statusCode)]) {
-                        
-                        NSLog(@"urlResponse: %@",urlResponse);
-                        
                         if ([(NSHTTPURLResponse *) urlResponse statusCode] < 300) {
-                            
-                             NSLog(@"Inside 300: %@",urlResponse);
-                            
                             NSDictionary* responseObject = [NSJSONSerialization
                                                             JSONObjectWithData:data
                                                             options:NSJSONReadingAllowFragments
@@ -2891,6 +3024,525 @@ Sample payload
 
 
 
+-(void)getCardRateDCC:(NSString*)bin
+               amount:(NSString*)amount
+           completion:(void (^)(NSDictionary *dict, NSError* error))completion{
+    
+    [self postATransactionWithPayload:[self constructCardRateDCCPayload:(NSString *)bin   amount:(NSString *)amount ]  completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+         completion(dict,nil);
+      }];
+    
+}
+
+
+-(void)getMerchantRateDCC:(NSString*)currency_code
+               amount:(NSString*)amount
+           completion:(void (^)(NSDictionary *dict, NSError* error))completion{
+    
+    [self postATransactionWithPayload:[self constructMerchantRateDCCPayload:(NSString *)currency_code   amount:(NSString *)amount ]  completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+         completion(dict,nil);
+        
+    }];
+    
+}
+
+/**
+ Define request structure for CreditCard Payload With Card CVV
+ @param cardCVV  credit-card payload parameter
+ @param cardExpMMYY credit-card payload parameter
+ @param cardNumber credit-card payload parameter
+ @param cardHolderName credit-card payload parameter
+ @param cardType creditcard payload parameter
+ @param currencyCode
+ @param totalAmount
+ @param cardType
+ @param currencyCode
+ @param totalAmount
+ @param merchantRef
+ @param transactionType
+ @return Returns
+ @see
+ 
+ {
+ "amount":"100",
+ "transaction_type":"purchase",
+ "method":"credit_card",
+ "currency_code":"GBP",
+ "credit_card":{
+    "type":"mastercard",
+    "cardholder_name":"Eck Test 3", "card_number":"4389800000000006",
+    "exp_date":"1215",
+    "cvv":"006"
+ },
+ "rate_reference":{
+    "rate_id":"136753",
+    "dcc_accepted":"true"
+ }
+ }
+
+ */
+
+- (NSDictionary*)constructCreditCardPayloadWithCardCVVForDCC:(NSString *)totalAmount
+                                             transactionType:(NSString *)transactionType
+                                                      method:(NSString *)method
+                                                currencyCode:(NSString *)currencyCode
+                                                     cardCVV:(NSString *)cardCVV
+                                                 cardExpMMYY:(NSString *)cardExpMMYY
+                                                  cardNumber:(NSString *)cardNumber
+                                              cardHolderName:(NSString *)cardHolderName
+                                                    cardType:(NSString *)cardType
+                                                     rate_id:(NSString *)rate_id
+                                                dcc_accepted:(NSString *)dcc_accepted
+{
+    NSArray *crediCardKeys = @[
+                               @"type",
+                               @"cardholder_name",
+                               @"card_number",
+                               @"exp_date",
+                               @"cvv",
+                               ];
+    
+    NSArray *crediCardValues = @[
+                                 cardType,
+                                 cardHolderName,
+                                 cardNumber,
+                                 cardExpMMYY,
+                                 cardCVV,
+                                 ];
+    
+    NSDictionary *crediCard_dict = [NSDictionary dictionaryWithObjects:crediCardValues forKeys:crediCardKeys];
+    
+    NSArray *rateKeys = @[
+                          @"rate_id",
+                          @"dcc_accepted"
+                          ];
+    
+    NSArray *rateValues = @[
+                            rate_id,
+                            dcc_accepted
+                            ];
+    
+    NSDictionary *rate_reference_dict = [NSDictionary dictionaryWithObjects:rateValues forKeys:rateKeys];
+    
+    NSArray *getRateKeys = @[
+                             @"amount",
+                             @"transaction_type",
+                             @"method",
+                             @"currency_code",
+                             @"credit_card",
+                             @"rate_reference",
+                             ];
+    
+    NSArray *getRateValues = @[
+                               totalAmount,
+                               transactionType,
+                               method,
+                               currencyCode,
+                               crediCard_dict,
+                               rate_reference_dict
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:getRateValues forKeys:getRateKeys];
+}
+
+/*
+ "billing_address":{
+ "city":"St. Louis",
+ "country":"US",
+ "email":"abc@main.com",
+ "phone":{
+    "type":"home",
+    "number":"212-515-1212"
+ },
+ "street":"12115 LACKLAND",
+ "state_province":"MO",
+ "zip_postal_code":"63146"
+ },
+
+ */
+
+- (NSDictionary*)constructCreditCardPayloadWithCardAVSForDCC:(NSString *)totalAmount
+                                             transactionType:(NSString *)transactionType
+                                                      method:(NSString *)method
+                                                currencyCode:(NSString *)currencyCode
+                                                     cardCVV:(NSString *)cardCVV
+                                                 cardExpMMYY:(NSString *)cardExpMMYY
+                                                  cardNumber:(NSString *)cardNumber
+                                              cardHolderName:(NSString *)cardHolderName
+                                                    cardType:(NSString *)cardType
+                                                     rate_id:(NSString *)rate_id
+                                                dcc_accepted:(NSString *)dcc_accepted
+                                                billing_city:(NSString *)billing_city
+                                             billing_country:(NSString *)billing_country
+                                               billing_email:(NSString *)billing_email
+                                              billing_street:(NSString *)billing_street
+                                      billing_state_province:(NSString *)billing_state_province
+                                     billing_zip_postal_code:(NSString *)billing_zip_postal_code
+                                                  phone_type:(NSString *)phone_type
+                                                phone_number:(NSString *)phone_number
+
+{
+    
+    NSArray *billingAddressPhoneKeys = @[
+                                         @"type",
+                                         @"number"
+                                         ];
+    
+    NSArray *billingAddressPhoneValues = @[
+                                           phone_type,
+                                           phone_number
+                                           ];
+    
+    NSDictionary *billingAddressPhone_dict = [NSDictionary dictionaryWithObjects:billingAddressPhoneValues forKeys:billingAddressPhoneKeys];
+    
+    NSArray *billingAddressKeys = @[
+                                    @"city",
+                                    @"country",
+                                    @"email",
+                                    @"street",
+                                    @"state_province",
+                                    @"zip_postal_code",
+                                    @"phone"
+                                    ];
+    
+    NSArray *billingAddressValues = @[
+                                      billing_city,
+                                      billing_country,
+                                      billing_email,
+                                      billing_street,
+                                      billing_state_province,
+                                      billing_zip_postal_code,
+                                      billingAddressPhone_dict
+                                      ];
+    
+    NSDictionary *billingAddress_dict = [NSDictionary dictionaryWithObjects:billingAddressValues forKeys:billingAddressKeys];
+
+    
+    NSArray *crediCardKeys = @[
+                               @"type",
+                               @"cardholder_name",
+                               @"card_number",
+                               @"exp_date",
+                               @"cvv",
+                               ];
+    
+    NSArray *crediCardValues = @[
+                                 cardType,
+                                 cardHolderName,
+                                 cardNumber,
+                                 cardExpMMYY,
+                                 cardCVV,
+                                 ];
+    
+    NSDictionary *crediCard_dict = [NSDictionary dictionaryWithObjects:crediCardValues forKeys:crediCardKeys];
+    
+    NSArray *rateKeys = @[
+                          @"rate_id",
+                          @"dcc_accepted"
+                          ];
+    
+    NSArray *rateValues = @[
+                            rate_id,
+                            dcc_accepted
+                            ];
+    
+    NSDictionary *rate_reference_dict = [NSDictionary dictionaryWithObjects:rateValues forKeys:rateKeys];
+    
+    NSArray *getRateKeys = @[
+                             @"amount",
+                             @"transaction_type",
+                             @"method",
+                             @"currency_code",
+                             @"credit_card",
+                             @"rate_reference",
+                             @"billing_address"
+                             ];
+    
+    NSArray *getRateValues = @[
+                               totalAmount,
+                               transactionType,
+                               method,
+                               currencyCode,
+                               crediCard_dict,
+                               rate_reference_dict,
+                               billingAddress_dict
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:getRateValues forKeys:getRateKeys];
+}
+
+
+
+
+- (NSDictionary*)constructCreditCardPayloadWithCardSoftDescForDCC:(NSString *)totalAmount
+                                                  transactionType:(NSString *)transactionType
+                                                           method:(NSString *)method
+                                                     currencyCode:(NSString *)currencyCode
+                                                          cardCVV:(NSString *)cardCVV
+                                                      cardExpMMYY:(NSString *)cardExpMMYY
+                                                       cardNumber:(NSString *)cardNumber
+                                                   cardHolderName:(NSString *)cardHolderName
+                                                         cardType:(NSString *)cardType
+                                                          rate_id:(NSString *)rate_id
+                                                     dcc_accepted:(NSString *)dcc_accepted
+                                                        dbaNameSD:(NSString *)dbaNameSD
+                                                         streetSD:(NSString *)streetSD
+                                                         regionSD:(NSString *)regionSD
+                                                            midSD:(NSString *)midSD
+                                                            mccSD:(NSString *)mccSD
+                                                     postalCodeSD:(NSString *)postalCodeSD
+                                                    countryCodeSD:(NSString *)countryCodeSD
+                                            merchantContactInfoSD:(NSString *)merchantContactInfoSD
+
+{
+    NSArray *softDescriptorsKeys = @[
+                                     @"dba_name",
+                                     @"street",
+                                     @"region",
+                                     @"mid",
+                                     @"mcc",
+                                     @"postal_code",
+                                     @"country_code",
+                                     @"merchant_contact_info"
+                                     ];
+    
+    NSArray *softDescriptorsValues = @[
+                                       dbaNameSD,
+                                       streetSD,
+                                       regionSD,
+                                       midSD,
+                                       mccSD,
+                                       postalCodeSD,
+                                       countryCodeSD,
+                                       merchantContactInfoSD,
+                                       ];
+    
+    NSDictionary *soft_descriptors_dict = [NSDictionary dictionaryWithObjects:softDescriptorsValues forKeys:softDescriptorsKeys];
+    
+    NSArray *crediCardKeys = @[
+                               @"type",
+                               @"cardholder_name",
+                               @"card_number",
+                               @"exp_date",
+                               @"cvv",
+                               ];
+    
+    NSArray *crediCardValues = @[
+                                 cardType,
+                                 cardHolderName,
+                                 cardNumber,
+                                 cardExpMMYY,
+                                 cardCVV,
+                                 ];
+    
+    NSDictionary *crediCard_dict = [NSDictionary dictionaryWithObjects:crediCardValues forKeys:crediCardKeys];
+    
+    NSArray *rateKeys = @[
+                          @"rate_id",
+                          @"dcc_accepted"
+                          ];
+    
+    NSArray *rateValues = @[
+                            rate_id,
+                            dcc_accepted
+                            ];
+    
+    NSDictionary *rate_reference_dict = [NSDictionary dictionaryWithObjects:rateValues forKeys:rateKeys];
+    
+    NSArray *getRateKeys = @[
+                             @"amount",
+                             @"transaction_type",
+                             @"method",
+                             @"currency_code",
+                             @"credit_card",
+                             @"rate_reference",
+                             @"billing_address"
+                             ];
+    
+    NSArray *getRateValues = @[
+                               totalAmount,
+                               transactionType,
+                               method,
+                               currencyCode,
+                               crediCard_dict,
+                               rate_reference_dict,
+                               soft_descriptors_dict
+                               ];
+    
+    return [NSDictionary dictionaryWithObjects:getRateValues forKeys:getRateKeys];
+}
+
+
+
+/**
+ 
+ @param cardCVV
+ @param cardExpMMYY
+ @param cardNumber
+ @param cardExpMMYY
+ @param phoneType
+ @param phoneNumber
+ @param billingCity
+ @param billingCountry
+ @param billingEmail
+ @param billingStreet
+ @param billingZipCode
+ @param currencyCode
+ @param totalAmount
+ @param transactionType
+ @param merchantRef
+ @param rate_id
+ @param dcc_accepted
+ **/
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_CVV:(NSString*)cardCVV
+                                                       cardExpMMYY:(NSString*)cardExpMMYY
+                                                        cardNumber:(NSString*)cardNumber
+                                                    cardHolderName:(NSString*)cardHolderName
+                                                          cardType:(NSString*)cardType
+                                                      currencyCode:(NSString*)currencyCode
+                                                       totalAmount:(NSString*)totalAmount
+                                                   transactionType:(NSString*)transactionType
+                                                            method:(NSString*)method
+                                                           rate_id:(NSString*)rate_id
+                                                      dcc_accepted:(NSString*)dcc_accepted
+                                                        completion:(void (^)(NSDictionary *dict, NSError* error))completion
+{
+    [self postATransactionWithPayload:[self constructCreditCardPayloadWithCardCVVForDCC:totalAmount
+                                                                        transactionType:transactionType
+                                                                                 method:method
+                                                                           currencyCode:currencyCode
+                                                                                cardCVV:cardCVV
+                                                                            cardExpMMYY:cardExpMMYY
+                                                                             cardNumber:cardNumber
+                                                                         cardHolderName:cardHolderName
+                                                                               cardType:cardType
+                                                                                rate_id:rate_id
+                                                                           dcc_accepted:dcc_accepted ]completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+         completion(dict,nil);
+      
+    }];
+}
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_AVS:(NSString*)cardCVV
+                                                           cardExpMMYY:(NSString*)cardExpMMYY
+                                                            cardNumber:(NSString*)cardNumber
+                                                        cardHolderName:(NSString*)cardHolderName
+                                                              cardType:(NSString*)cardType
+                                                          currencyCode:(NSString*)currencyCode
+                                                           totalAmount:(NSString*)totalAmount
+                                                       transactionType:(NSString*)transactionType
+                                                                method:(NSString*)method
+                                                               rate_id:(NSString*)rate_id
+                                                          dcc_accepted:(NSString*)dcc_accepted
+                                                          billing_city:(NSString *)billing_city
+                                                       billing_country:(NSString *)billing_country
+                                                         billing_email:(NSString *)billing_email
+                                                        billing_street:(NSString *)billing_street
+                                                billing_state_province:(NSString *)billing_state_province
+                                               billing_zip_postal_code:(NSString *)billing_zip_postal_code
+                                                            phone_type:(NSString *)phone_type
+                                                          phone_number:(NSString *)phone_number
+                                                            completion:(void (^)(NSDictionary *dict, NSError* error))completion
+{
+    [self postATransactionWithPayload:[self constructCreditCardPayloadWithCardAVSForDCC:(NSString *)totalAmount
+                                                                        transactionType:(NSString *)transactionType
+                                                                                 method:(NSString *)method
+                                                                           currencyCode:(NSString *)currencyCode
+                                                                                cardCVV:(NSString *)cardCVV
+                                                                            cardExpMMYY:(NSString *)cardExpMMYY
+                                                                             cardNumber:(NSString *)cardNumber
+                                                                         cardHolderName:(NSString *)cardHolderName
+                                                                               cardType:(NSString *)cardType
+                                                                                rate_id:(NSString *)rate_id
+                                                                           dcc_accepted:(NSString *)dcc_accepted
+                                                                           billing_city:(NSString *)billing_city
+                                                                        billing_country:(NSString *)billing_country
+                                                                          billing_email:(NSString *)billing_email
+                                                                         billing_street:(NSString *)billing_street
+                                                                 billing_state_province:(NSString *)billing_state_province
+                                                                billing_zip_postal_code:(NSString *)billing_zip_postal_code
+                                                                             phone_type:(NSString *)phone_type
+                                                                           phone_number:(NSString *)phone_number]completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+        completion(dict,nil);
+        
+    }];
+}
+
+-(void)submitPurchaseOrNakedTransactionWithCreditCardDetailsForDCC_SoftDesc:(NSString *)totalAmount
+                                                            transactionType:(NSString *)transactionType
+                                                                     method:(NSString *)method
+                                                               currencyCode:(NSString *)currencyCode
+                                                                    cardCVV:(NSString *)cardCVV
+                                                                cardExpMMYY:(NSString *)cardExpMMYY
+                                                                 cardNumber:(NSString *)cardNumber
+                                                             cardHolderName:(NSString *)cardHolderName
+                                                                   cardType:(NSString *)cardType
+                                                                    rate_id:(NSString *)rate_id
+                                                               dcc_accepted:(NSString *)dcc_accepted
+                                                                  dbaNameSD:(NSString *)dbaNameSD
+                                                                   streetSD:(NSString *)streetSD
+                                                                   regionSD:(NSString *)regionSD
+                                                                      midSD:(NSString *)midSD
+                                                                      mccSD:(NSString *)mccSD
+                                                               postalCodeSD:(NSString *)postalCodeSD
+                                                              countryCodeSD:(NSString *)countryCodeSD
+                                                      merchantContactInfoSD:(NSString *)merchantContactInfoSD
+                                                            completion:(void (^)(NSDictionary *dict, NSError* error))completion
+{
+    [self postATransactionWithPayload:[self constructCreditCardPayloadWithCardSoftDescForDCC:(NSString *)totalAmount
+                                                                             transactionType:(NSString *)transactionType
+                                                                                      method:(NSString *)method
+                                                                                currencyCode:(NSString *)currencyCode
+                                                                                     cardCVV:(NSString *)cardCVV
+                                                                                 cardExpMMYY:(NSString *)cardExpMMYY
+                                                                                  cardNumber:(NSString *)cardNumber
+                                                                              cardHolderName:(NSString *)cardHolderName
+                                                                                    cardType:(NSString *)cardType
+                                                                                     rate_id:(NSString *)rate_id
+                                                                                dcc_accepted:(NSString *)dcc_accepted
+                                                                                   dbaNameSD:(NSString *)dbaNameSD
+                                                                                    streetSD:(NSString *)streetSD
+                                                                                    regionSD:(NSString *)regionSD
+                                                                                       midSD:(NSString *)midSD
+                                                                                       mccSD:(NSString *)mccSD
+                                                                                postalCodeSD:(NSString *)postalCodeSD
+                                                                               countryCodeSD:(NSString *)countryCodeSD
+                                                                       merchantContactInfoSD:(NSString *)merchantContactInfoSD ]completion:^(NSDictionary *dict, NSError *error){
+        
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+        
+        completion(dict,nil);
+        
+    }];
+}
 
 
 @end
