@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5CBCCF711AFBA3E500B67A86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBCCF701AFBA3E500B67A86 /* UIKit.framework */; };
+		5CBCCF731AFBA3FE00B67A86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBCCF721AFBA3FE00B67A86 /* CoreGraphics.framework */; };
+		5CBCCF751AFBA40600B67A86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBCCF741AFBA40600B67A86 /* Foundation.framework */; };
+		923E71F919BF40EF007891E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E71F819BF40EF007891E3 /* main.m */; };
+		923E71FC19BF40EF007891E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E71FB19BF40EF007891E3 /* AppDelegate.m */; };
+		923E71FF19BF40EF007891E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E71FE19BF40EF007891E3 /* ViewController.m */; };
+		923E720219BF40EF007891E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923E720019BF40EF007891E3 /* Main.storyboard */; };
+		923E720419BF40EF007891E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 923E720319BF40EF007891E3 /* Images.xcassets */; };
+		923E722D19BF52B2007891E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E722C19BF52B2007891E3 /* SystemConfiguration.framework */; };
+		923E722F19BF52E5007891E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E722E19BF52E5007891E3 /* MobileCoreServices.framework */; };
+		982FC3951A9CDD5200FF3715 /* PayeezySDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FC3941A9CDD5200FF3715 /* PayeezySDK.m */; };
+		982FC3981A9CE07000FF3715 /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FC3971A9CE07000FF3715 /* SBJson4StreamWriter.m */; };
+		982FC39B1A9CE08700FF3715 /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FC39A1A9CE08700FF3715 /* SBJson4StreamWriterState.m */; };
+		982FC39E1A9CE0B900FF3715 /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FC39D1A9CE0B900FF3715 /* SBJson4Writer.m */; };
+		986A0AEA1AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png in Resources */ = {isa = PBXBuildFile; fileRef = 986A0AE91AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png */; };
+		986A0AEC1AA1208100160732 /* FirstDataLogo-693x200.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 986A0AEB1AA1208100160732 /* FirstDataLogo-693x200.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5CBCCF701AFBA3E500B67A86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5CBCCF721AFBA3FE00B67A86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5CBCCF741AFBA40600B67A86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		923E71F319BF40EF007891E3 /* GermanDirectDebit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GermanDirectDebit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		923E71F719BF40EF007891E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923E71F819BF40EF007891E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		923E71FA19BF40EF007891E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		923E71FB19BF40EF007891E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		923E71FD19BF40EF007891E3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		923E71FE19BF40EF007891E3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		923E720119BF40EF007891E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		923E720319BF40EF007891E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		923E722B19BF4835007891E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		923E722C19BF52B2007891E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		923E722E19BF52E5007891E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		982FC3931A9CDD5200FF3715 /* PayeezySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayeezySDK.h; sourceTree = "<group>"; };
+		982FC3941A9CDD5200FF3715 /* PayeezySDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayeezySDK.m; sourceTree = "<group>"; };
+		982FC3961A9CE07000FF3715 /* SBJson4StreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriter.h; sourceTree = "<group>"; };
+		982FC3971A9CE07000FF3715 /* SBJson4StreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriter.m; sourceTree = "<group>"; };
+		982FC3991A9CE08700FF3715 /* SBJson4StreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriterState.h; sourceTree = "<group>"; };
+		982FC39A1A9CE08700FF3715 /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
+		982FC39C1A9CE0B900FF3715 /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
+		982FC39D1A9CE0B900FF3715 /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
+		986A0AE91AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Payeezy-DevelopersLogo_Horz (3).png"; sourceTree = "<group>"; };
+		986A0AEB1AA1208100160732 /* FirstDataLogo-693x200.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "FirstDataLogo-693x200.jpg"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		923E71F019BF40EF007891E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CBCCF751AFBA40600B67A86 /* Foundation.framework in Frameworks */,
+				5CBCCF731AFBA3FE00B67A86 /* CoreGraphics.framework in Frameworks */,
+				5CBCCF711AFBA3E500B67A86 /* UIKit.framework in Frameworks */,
+				923E722F19BF52E5007891E3 /* MobileCoreServices.framework in Frameworks */,
+				923E722D19BF52B2007891E3 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		923E71EA19BF40EF007891E3 = {
+			isa = PBXGroup;
+			children = (
+				923E71F519BF40EF007891E3 /* PayeezyClient */,
+				923E721D19BF41EF007891E3 /* Frameworks */,
+				923E71F419BF40EF007891E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		923E71F419BF40EF007891E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				923E71F319BF40EF007891E3 /* GermanDirectDebit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		923E71F519BF40EF007891E3 /* PayeezyClient */ = {
+			isa = PBXGroup;
+			children = (
+				923E71FA19BF40EF007891E3 /* AppDelegate.h */,
+				923E71FB19BF40EF007891E3 /* AppDelegate.m */,
+				923E71FD19BF40EF007891E3 /* ViewController.h */,
+				923E71FE19BF40EF007891E3 /* ViewController.m */,
+				923E720019BF40EF007891E3 /* Main.storyboard */,
+				923E720319BF40EF007891E3 /* Images.xcassets */,
+				923E71F619BF40EF007891E3 /* Supporting Files */,
+				982FC3931A9CDD5200FF3715 /* PayeezySDK.h */,
+				982FC3941A9CDD5200FF3715 /* PayeezySDK.m */,
+			);
+			path = PayeezyClient;
+			sourceTree = "<group>";
+		};
+		923E71F619BF40EF007891E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				986A0AEB1AA1208100160732 /* FirstDataLogo-693x200.jpg */,
+				986A0AE91AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png */,
+				923E71F719BF40EF007891E3 /* Info.plist */,
+				923E71F819BF40EF007891E3 /* main.m */,
+				982FC3961A9CE07000FF3715 /* SBJson4StreamWriter.h */,
+				982FC3971A9CE07000FF3715 /* SBJson4StreamWriter.m */,
+				982FC3991A9CE08700FF3715 /* SBJson4StreamWriterState.h */,
+				982FC39A1A9CE08700FF3715 /* SBJson4StreamWriterState.m */,
+				982FC39C1A9CE0B900FF3715 /* SBJson4Writer.h */,
+				982FC39D1A9CE0B900FF3715 /* SBJson4Writer.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		923E721D19BF41EF007891E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CBCCF741AFBA40600B67A86 /* Foundation.framework */,
+				5CBCCF721AFBA3FE00B67A86 /* CoreGraphics.framework */,
+				5CBCCF701AFBA3E500B67A86 /* UIKit.framework */,
+				923E722E19BF52E5007891E3 /* MobileCoreServices.framework */,
+				923E722C19BF52B2007891E3 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			path = PayeezyClient/Framework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		923E71F219BF40EF007891E3 /* GermanDirectDebit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GermanDirectDebit" */;
+			buildPhases = (
+				923E71EF19BF40EF007891E3 /* Sources */,
+				923E71F019BF40EF007891E3 /* Frameworks */,
+				923E71F119BF40EF007891E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GermanDirectDebit;
+			productName = PayeezyClient;
+			productReference = 923E71F319BF40EF007891E3 /* GermanDirectDebit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		923E71EB19BF40EF007891E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "First Data Corporation";
+				TargetAttributes = {
+					923E71F219BF40EF007891E3 = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = DAHGTV492K;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GermanDirectDebit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 923E71EA19BF40EF007891E3;
+			productRefGroup = 923E71F419BF40EF007891E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				923E71F219BF40EF007891E3 /* GermanDirectDebit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		923E71F119BF40EF007891E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				986A0AEC1AA1208100160732 /* FirstDataLogo-693x200.jpg in Resources */,
+				986A0AEA1AA11DBC00160732 /* Payeezy-DevelopersLogo_Horz (3).png in Resources */,
+				923E720219BF40EF007891E3 /* Main.storyboard in Resources */,
+				923E720419BF40EF007891E3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		923E71EF19BF40EF007891E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				982FC39E1A9CE0B900FF3715 /* SBJson4Writer.m in Sources */,
+				923E71FF19BF40EF007891E3 /* ViewController.m in Sources */,
+				923E71FC19BF40EF007891E3 /* AppDelegate.m in Sources */,
+				982FC3981A9CE07000FF3715 /* SBJson4StreamWriter.m in Sources */,
+				923E71F919BF40EF007891E3 /* main.m in Sources */,
+				982FC39B1A9CE08700FF3715 /* SBJson4StreamWriterState.m in Sources */,
+				982FC3951A9CDD5200FF3715 /* PayeezySDK.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		923E720019BF40EF007891E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				923E720119BF40EF007891E3 /* Base */,
+				923E722B19BF4835007891E3 /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		923E721119BF40EF007891E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		923E721219BF40EF007891E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		923E721419BF40EF007891E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayeezyClient/Framework",
+				);
+				INFOPLIST_FILE = PayeezyClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = GermanDirectDebit;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		923E721519BF40EF007891E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayeezyClient/Framework",
+				);
+				INFOPLIST_FILE = PayeezyClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = GermanDirectDebit;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		923E71EE19BF40EF007891E3 /* Build configuration list for PBXProject "GermanDirectDebit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				923E721119BF40EF007891E3 /* Debug */,
+				923E721219BF40EF007891E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		923E721319BF40EF007891E3 /* Build configuration list for PBXNativeTarget "GermanDirectDebit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				923E721419BF40EF007891E3 /* Debug */,
+				923E721519BF40EF007891E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 923E71EB19BF40EF007891E3 /* Project object */;
+}
