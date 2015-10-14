@@ -20,7 +20,7 @@
                                 <rect key="frame" x="22" y="27" width="125" height="41"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-Ka-gvT">
-                                <rect key="frame" x="22" y="395" width="284" height="38"/>
+                                <rect key="frame" x="16" y="441" width="284" height="38"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
                                 <color key="tintColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,32 +30,6 @@
                                 </state>
                                 <connections>
                                     <action selector="PurchaseReversalTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PLy-Mz-vAE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxX-4F-Wq5">
-                                <rect key="frame" x="22" y="449" width="284" height="38"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Authorize - Capture - Reversal">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="AuthorizeCaptureReversalTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="C8c-zF-Zxa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syA-hC-NBc">
-                                <rect key="frame" x="22" y="503" width="284" height="38"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Purchase - Refund - Reversal">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="purchaseRefundReversalTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cY9-7V-LuR"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ifi-eQ-ozF">
@@ -75,8 +49,11 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMq-MH-NU8">
                                 <rect key="frame" x="0.0" y="186" width="414" height="94"/>
                             </pickerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N76-hN-eWY">
+                                <rect key="frame" x="196" y="68" width="117" height="62"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EG-p6-bO1">
-                                <rect key="frame" x="23" y="338" width="284" height="38"/>
+                                <rect key="frame" x="16" y="361" width="284" height="38"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
                                 <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,9 +65,6 @@
                                     <action selector="AuthorizeReversalTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xPi-Xx-hzQ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N76-hN-eWY">
-                                <rect key="frame" x="196" y="68" width="117" height="62"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -112,5 +86,5 @@
     <resources>
         <image name="Payeezy-DevelopersLogo_Horz (3).png" width="1278" height="406"/>
     </resources>
-    <color key="tintColor" patternImage="6FFEF38C-40E1-40B1-9E55-BDE4947D3ED9" colorSpace="pattern"/>
+    <color key="tintColor" patternImage="1283EFF4-B84C-4E7A-9609-DA3BFA6315F6" colorSpace="pattern"/>
 </document>

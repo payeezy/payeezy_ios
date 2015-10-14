@@ -46,11 +46,11 @@
 
 - (IBAction)AuthorizeReversalTransaction:(id)sender;// test case 1
 
-- (IBAction)AuthorizeCaptureReversalTransaction:(id)sender;// test case 2
+//- (IBAction)AuthorizeCaptureReversalTransaction:(id)sender;// test case 2
 
 - (IBAction)PurchaseReversalTransaction:(id)sender;// test case 3
 
-- (IBAction)purchaseRefundReversalTransaction:(id)sender; // test case 4
+//- (IBAction)purchaseRefundReversalTransaction:(id)sender; // test case 4
 
 @end
 

@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>69571641-053E-45A4-A322-64E8DB1F560D</string>
+	<string>7A0EB380-77EA-4512-964C-A13467BB241A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>PayeezyClientSample</string>
+	<string>PayeezyTimeoutReversalSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>
 		<string>https://github.com/payeezy/payeezy_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>examples/international/TimeoutReversalTransactions/PayeezyClientSample.xcodeproj</string>
+	<string>examples/Payeezy-International/payeezyTimeOutReversal/PayeezyTimeoutReversalSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A3A0CC7819F609F0E51C33DC9564623458878F46</key>

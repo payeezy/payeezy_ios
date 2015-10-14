@@ -114,6 +114,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N76-hN-eWY">
                                 <rect key="frame" x="99" y="216" width="148" height="99"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tokenised Transactions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taZ-04-HGg">
+                                <rect key="frame" x="163" y="47" width="149" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -134,5 +140,5 @@
     <resources>
         <image name="Payeezy-DevelopersLogo_Horz (3).png" width="1278" height="406"/>
     </resources>
-    <color key="tintColor" patternImage="04E5D509-E9F5-4EA3-A25F-CDB69178E337" colorSpace="pattern"/>
+    <color key="tintColor" patternImage="FF7BB793-2234-49DA-8378-A8AEDE1E2682" colorSpace="pattern"/>
 </document>

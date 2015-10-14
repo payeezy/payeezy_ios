@@ -33,11 +33,10 @@
 /* Refer to dev portal -> 'My Merchants' page -> SANDBOX -> Token */
 #define KToken       @"fdoa-d790ce8951daa73262645cf102641994c1e55e7cdf4c03c8"
 
-/* use following url for Exchange Rate */
-#define Exchange_rate_URL   @"https://api-cert.payeezy.com/v1/transactions/exchange_rate"
+#define Exchange_rate_URL  @"https://api-cert.payeezy.com/v1/transactions/exchange_rate"
 
 /* use following url for Primary transactions */
-#define TransactionsURL     @"https://api-cert.payeezy.com/v1/transactions/"
+#define TransactionsURL     @"https://api-cert.payeezy.com/v1/transactions"
 
 
 
@@ -1236,6 +1235,115 @@
                                               otherButtonTitles:nil];
         [alert show];
     }];
+    
+}
+
+
+/*!
+ * Sample method for authorize Void using visa card
+ * \param id
+ * \returns IBAction
+ */
+
+- (IBAction)AuthorizeReversalTransaction:(id)sender {
+   
+    // Test credit card info
+    NSDictionary* credit_card = self.icredit_card ;
+    
+    PayeezySDK* myClient = [[PayeezySDK alloc]initWithApiKey:KApiKey apiSecret:KApiSecret merchantToken:KToken  url:TransactionsURL];
+    
+    if(![self.wait4Response isAnimating]){
+        [self.wait4Response startAnimating];
+    }
+    
+    [myClient submitAuthorizePurchaseTransactionWithCreditCardDetails:credit_card[@"cvv"] cardExpMMYY:credit_card[@"exp_date"] cardNumber:credit_card[@"card_number"] cardHolderName:credit_card[@"cardholder_name"]  cardType:credit_card[@"type"] currencyCode:@"GBP" totalAmount:@"200" merchantRef:@"abc1412096293369"   transactionType:@"authorize" token_type:@"FDToken" method:@"token" completion:^(NSDictionary *dict, NSError *error)
+     {
+         
+         if([self.wait4Response isAnimating]){
+             [self.wait4Response stopAnimating];
+         }
+         
+         NSString *authStatusMessage = nil;
+         
+         if (error == nil)
+         {
+             authStatusMessage = [NSString stringWithFormat:@"Transaction Details \rType:%@ \rTransaction Tag:%@\rCorrelation Id:%@\rBank Response Code:%@ \rTransaction Status:%@",
+                                  [dict objectForKey:@"transaction_type"],
+                                  [dict objectForKey:@"transaction_tag"],
+                                  [dict objectForKey:@"correlation_id"],
+                                  [dict objectForKey:@"bank_resp_code"],
+                                  [dict objectForKey:@"transaction_status"] ];
+             if ([[dict objectForKey:@"transaction_status"] isEqualToString:@"approved"]){
+                 
+                 [self voidRefundCaptureTransaction:@"abc1412096293369" :[dict objectForKey:@"transaction_tag"] :@"void" :[dict objectForKey:@"transaction_id"]  :@"200"];
+                 
+             }
+         }
+         else
+         {
+             authStatusMessage = [NSString stringWithFormat:@"Error was encountered processing transaction: %@", error.debugDescription];
+         }
+         
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"First Data Payment Authorization"
+                                                         message:authStatusMessage delegate:self
+                                               cancelButtonTitle:@"Dismiss"
+                                               otherButtonTitles:nil];
+         [alert show];
+     }];
+    
+}
+
+/*!
+ * Sample method for authorize Void using visa card
+ * \param id
+ * \returns IBAction
+ */
+
+- (IBAction)PurchaseReversalTransaction:(id)sender {
+    
+    // Test credit card info
+    NSDictionary* credit_card = self.icredit_card ;
+    
+    PayeezySDK* myClient = [[PayeezySDK alloc]initWithApiKey:KApiKey apiSecret:KApiSecret merchantToken:KToken  url:TransactionsURL];
+    
+    if(![self.wait4Response isAnimating]){
+        [self.wait4Response startAnimating];
+    }
+    
+    [myClient submitAuthorizePurchaseTransactionWithCreditCardDetails:credit_card[@"cvv"] cardExpMMYY:credit_card[@"exp_date"] cardNumber:credit_card[@"card_number"] cardHolderName:credit_card[@"cardholder_name"]  cardType:credit_card[@"type"] currencyCode:@"GBP" totalAmount:@"200" merchantRef:@"abc1412096293369"   transactionType:@"authorize" token_type:@"FDToken" method:@"token" completion:^(NSDictionary *dict, NSError *error)
+     {
+         
+         if([self.wait4Response isAnimating]){
+             [self.wait4Response stopAnimating];
+         }
+         
+         NSString *authStatusMessage = nil;
+         
+         if (error == nil)
+         {
+             authStatusMessage = [NSString stringWithFormat:@"Transaction Details \rType:%@ \rTransaction Tag:%@\rCorrelation Id:%@\rBank Response Code:%@ \rTransaction Status:%@",
+                                  [dict objectForKey:@"transaction_type"],
+                                  [dict objectForKey:@"transaction_tag"],
+                                  [dict objectForKey:@"correlation_id"],
+                                  [dict objectForKey:@"bank_resp_code"],
+                                  [dict objectForKey:@"transaction_status"] ];
+             if ([[dict objectForKey:@"transaction_status"] isEqualToString:@"approved"]){
+                 
+                 [self voidRefundCaptureTransaction:@"abc1412096293369" :[dict objectForKey:@"transaction_tag"] :@"void" :[dict objectForKey:@"transaction_id"]  :@"200"];
+                 
+             }
+         }
+         else
+         {
+             authStatusMessage = [NSString stringWithFormat:@"Error was encountered processing transaction: %@", error.debugDescription];
+         }
+         
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"First Data Payment Authorization"
+                                                         message:authStatusMessage delegate:self
+                                               cancelButtonTitle:@"Dismiss"
+                                               otherButtonTitles:nil];
+         [alert show];
+     }];
     
 }
 
