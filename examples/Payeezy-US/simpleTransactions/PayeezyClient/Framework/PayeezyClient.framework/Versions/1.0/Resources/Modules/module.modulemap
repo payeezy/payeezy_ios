@@ -1,0 +1,6 @@
+framework module PayeezyClient {
+  umbrella header "PayeezyClient.h"
+
+  export *
+  module * { export * }
+}
