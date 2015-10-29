@@ -7,6 +7,19 @@ The Payeezy iOS SDK support secure In-App payments via Apple's Apple Pay technol
 * SDK also provide support association-sponsored Address Verification Services & association-sponsored Card Verification services
 * Use Gettoken POST API call to fetch token from Payeezy server and use token for feature transactions ex. authorize/Purchase
 
+* Tokenised Transactions- Token is generated for the card and the transactions are made using the token.US merchants will receive Transarmor multi-use tokens and EU merchants will receive Datavault tokens.
+* AVS,CVV, SoftDescriptor and 3DS Card Transactions- This feature is used to make credit card transactions [Non-Tokenised].<US merchants/EU Merchant>
+
+* Dynamic Currency Conversion and Dynamic Pricing- <US merchants/EU Merchant>
+There are two types of conversion possible "Merchant Rate" and "Card Rate".
+Merchant Rate - Merchant sends the Amount and the Currency Code to which the exchange rate has to be applied
+Card Rate - Merchant sends the Amount and the First 6 Digits of the credit card number(BIN). 
+Based on BIN the Currency Code is figured out based on which the exchange rate is applied
+
+* TimeOutReversal-  <EU Merchants> Any transaction can be reversed except for VOID.
+We will have to send an additional attribute "reversal_id" in the request payload. 
+
+* GermanDirectDebit- This method is applicable only to merchants domiciled in Germany.
 For more details on example. click on [example](https://github.com/payeezy/payeezy_ios/tree/master/examples) folder.
 
 For appledocs, click [here] (http://htmlpreview.github.io/?https://github.com/payeezy/payeezy_ios/blob/master/appledocs/index.htm) 
