@@ -60,9 +60,8 @@ We're always happy to help with code or other questions you might have! Check ou
 5. Create a new Pull Request  
 
 ## Feedback
-Payeezy IOS SDK is in active development. We appreciate the time you take to try it out and welcome your feedback!
-Here are a few ways to get in touch:
-* [GitHub Issues](https://github.com/payeezy/payeezy/issues) - For generally applicable issues and feedback
+We appreciate the time you take to try out our sample code and welcome your feedback. Here are a few ways to get in touch:
+* For generally applicable issues and feedback, create an issue in this repository.
 * support@payeezy.com - for personal support at any phase of integration
 * [1.855.799.0790](tel:+18557990790)  - for personal support in real time 
 
