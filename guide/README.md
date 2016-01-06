@@ -22,8 +22,6 @@ The iOS mobile SDK requires iOS SDK 6 and XCode 5.1 and above
 
 
 ## Feedback
-
-## Feedback
 We appreciate the time you take to try out our sample code and welcome your feedback. Here are a few ways to get in touch:
 * For generally applicable issues and feedback, create an issue in this repository.
 * support@payeezy.com - for personal support at any phase of integration
