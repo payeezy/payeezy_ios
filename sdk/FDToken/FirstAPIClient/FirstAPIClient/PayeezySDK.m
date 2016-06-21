@@ -246,8 +246,10 @@
     if (nil!=merchantRef) {
         resultDict[@"merchant_ref"] = merchantRef;
     }
-    
+#ifdef DEBUG
     NSLog(@"Simulated 3DS request: %@",resultDict);
+    
+#endif
     return resultDict;
 }
 
@@ -1450,11 +1452,14 @@
     
     NSString* payloadString = [parseString stringWithObject:payload];
     request.HTTPBody = [payloadString dataUsingEncoding:NSUTF8StringEncoding];
+
+    //enable logging in debug mode
+#ifdef DEBUG
     
     NSLog(@"URL: %@",self.url);
     NSLog(@"Request: %@",payloadString);
     
-    
+#endif
     if (!errDataConversion) {
         // Create url connection and fire request
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *urlResponse, NSData *data, NSError *connectionError) {
